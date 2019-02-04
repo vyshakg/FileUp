@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Layout } from "antd";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import { CustomFooter, CustomHeader, UploadPage } from "./containers";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+const { Content } = Layout;
+
+function App() {
+  return (
+    <Layout>
+      <CustomHeader />
+      <Content>
+        <Switch>
+          <Route exact path="/" component={UploadPage} />
+        </Switch>
+      </Content>
+      <CustomFooter />
+    </Layout>
+  );
 }
 
 export default App;

@@ -1,0 +1,53 @@
+.header-style {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  font-size: large;
+  border-bottom: 1px solid gainsboro;
+  margin-bottom: 0;
+}
+.sub-head-style {
+  color: #a0a0a0;
+  font-size: medium;
+  font-family: "Noto Sans", sans-serif;
+  margin-bottom: 2rem;
+}
+.coustom-circle-red {
+  margin-left: 1.5rem;
+  padding-right: 7px;
+  color: #ff4444;
+}
+.coustom-circle-green {
+  padding-right: 7px;
+  color: #00c851;
+}
+.coustom-circle-grey {
+  padding-right: 7px;
+  color: grey;
+}
+.custom-upload-text {
+  color: #a0a0a0;
+  font-size: medium;
+  font-family: "Noto Sans", sans-serif;
+  padding: 5rem;
+}
+.upload-tag {
+  color: #4e86ff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.uploadHandle-wrapper {
+  padding: 3rem;
+}
+.custom-icon-style {
+  font-size: 62px;
+  margin: 0 4rem;
+}
+
+.onHover-effect {
+  cursor: pointer;
+}
+.custom-icon-style-file-list {
+  font-size: 40px;
+  margin-left: 2rem;
+}

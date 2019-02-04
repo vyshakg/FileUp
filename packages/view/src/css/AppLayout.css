@@ -1,0 +1,49 @@
+.custom-emoji {
+  font-family: Segoe UI Emoji;
+  font-size: 1.5em;
+}
+.logo-span-up {
+  color: #447efd;
+  background: white;
+  border-radius: 4px;
+  margin-left: 5px;
+  padding: 3px;
+}
+.logo-h2-file {
+  font-family: "Noto Sans", sans-serif;
+  color: white;
+  font-size: x-large;
+  font-weight: 600;
+  margin-left: 10px;
+}
+.navlink-header {
+  display: inline-flex;
+  margin-left: auto;
+  outline: none;
+}
+.header-navlink:focus {
+  text-decoration: none;
+}
+.header-navlink-h2 {
+  font-family: "Noto Sans", sans-serif;
+  color: white;
+  font-size: x-large;
+  margin-bottom: 0;
+  padding: 0 1rem;
+  text-decoration: none !important;
+}
+.header-navlink {
+  margin-right: 3rem;
+}
+.active-header-navlink {
+  background: white;
+  color: #437efd;
+  text-decoration: none;
+}
+.active-header-navlink h2 {
+  color: #437efd;
+  text-decoration: none !important;
+}
+.header-navlink:visited {
+  text-decoration: none;
+}
