@@ -1,20 +1,20 @@
-// import {
-//   BaseEntity,
-//   PrimaryGeneratedColumn,
-//   Column,
-//   Entity,
-//   OneToMany
-// } from "typeorm";
-// import { File } from "./file";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Photo } from "./photo";
 
-// @Entity()
-// export class User extends BaseEntity {
-//   @PrimaryGeneratedColumn()
-//   id: number;
+@Entity()
+export class User extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-//   @Column()
-//   username: string;
+  @Column()
+  username: string;
 
-//   @OneToMany(type => File, file => file.id)
-//   files: File[];
-// }
+  @Column({ unique: true })
+  email: string;
+
+  @Column()
+  password: string;
+
+  @OneToMany(type => Photo, photo => photo.uploadedUser)
+  photos: Photo[];
+}

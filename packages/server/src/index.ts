@@ -1,30 +1,35 @@
-import "reflect-metadata";
-import express from "express";
 import bodyParser from "body-parser";
-import cors from "cors";
-import route from "./routes";
 import chalk from "chalk";
-import { createTypeormConn } from "./utils/createTypeormConn";
+import cors from "cors";
+import dotenv from "dotenv";
+import express from "express";
+import "reflect-metadata";
+import { createTypeormConn } from "./createTypeormConn";
+import redisSession from "./redisSession";
+import { default as fileRoute, default as userRoute } from "./routes";
+
+dotenv.config();
+
 const PORT = process.env.PORT || 4000;
+
+const CORSconfig = {
+  credentials: true,
+  origin: process.env.NODE_ENV === "production" ? "" : "http://localhost:3000"
+};
+
 (async () => {
   try {
-    const app = express();
-
-    app.use(cors());
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(
-      bodyParser.json({
-        limit: "100mb"
-      })
-    );
-
-    app.use(route);
     await createTypeormConn();
 
+    const app = express();
+    app.use(cors(CORSconfig));
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(redisSession());
+    app.use(userRoute);
+    app.use(fileRoute);
+
     app.listen(PORT, () => {
-      console.log(
-        chalk.bgBlueBright(`server started at  http://localhost:${PORT}`)
-      );
+      console.log(chalk.bgBlueBright(`server started at  http://localhost:${PORT}`));
     });
   } catch (e) {
     console.log(chalk.bgRedBright(e));
