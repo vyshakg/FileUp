@@ -2,14 +2,9 @@ import { Icon, notification } from "antd";
 import Axios from "axios";
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
-import {
-  CustomButton,
-  DisplayFileList,
-  FileList,
-  UploadContainer
-} from "../../layouts";
+import { CustomButton, DisplayFileList, FileList, UploadContainer } from "../../layouts";
 import formatFileSize from "../../utils/formatFileSize";
-import FileTypeIcon from "./FileTypeIcon";
+// import FileTypeIcon from "./FileTypeIcon";
 
 export class UploadPage extends Component {
   state = {
@@ -34,38 +29,21 @@ export class UploadPage extends Component {
       this.setState({ fileList: [...this.state.fileList, ...acceptedFiles] });
     }
   };
-
-  onsubmit = () => {
-    const { fileList } = this.state;
+  uploadFiles = file => {
     const formData = new FormData();
-    fileList.forEach(file => {
-      formData.append("files", file);
-    });
-
-    this.setState({
-      uploading: true
-    });
-
-    // const config = {
-    //   onUploadProgress: progressEvent => {
-    //     const percentCompleted = Math.round(
-    //       (progressEvent.loaded * 100) / progressEvent.total
-    //     );
-    //     this.setState({ percentCompleted });
-    //   }
-    // };
-    Axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
-    Axios.post("/api/upload", formData)
+    formData.append("file", file);
+    formData.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+    Axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`, formData)
       .then(res => {
         this.setState({
           fileList: [],
           uploading: false
         });
-
+        console.log(res);
         notification.open({
           duration: 6,
           message: "Upload Successfull",
-          description: "Your files are successfully added to the Cloud.",
+          description: `Your image ${res.data.original_filename} are successfully added to the Cloud.`,
           icon: (
             <Icon
               type="smile"
@@ -81,7 +59,7 @@ export class UploadPage extends Component {
         this.setState({
           uploading: false
         });
-
+        console.log(err);
         notification.open({
           message: "Upload Unsuccessfull",
           description: "Server Error! try after sometime",
@@ -97,18 +75,38 @@ export class UploadPage extends Component {
         });
       });
   };
+  onsubmit = () => {
+    const { fileList } = this.state;
+
+    this.setState({
+      uploading: true
+    });
+    fileList.forEach(file => {
+      this.uploadFiles(file);
+    });
+
+    // const config = {
+    //   onUploadProgress: progressEvent => {
+    //     const percentCompleted = Math.round(
+    //       (progressEvent.loaded * 100) / progressEvent.total
+    //     );
+    //     this.setState({ percentCompleted });
+    //   }
+    // };
+  };
   render() {
     const { uploading, fileList } = this.state;
     const files = this.state.fileList.map(file => {
       return (
         <FileList key={file.name}>
-          <FileTypeIcon file={file.name} />
           <Icon
             type="close"
             onClick={() => this.onRemoveHandle(file)}
             className="onHover-effect"
             style={{ float: "right" }}
           />
+          <img src={URL.createObjectURL(file)} alt={file.name} style={{ width: "160px" }} />
+
           <h4>{file.name}</h4>
           <span>{formatFileSize(file.size)}</span>
         </FileList>
@@ -119,20 +117,14 @@ export class UploadPage extends Component {
         <Dropzone onDrop={this.onDrop} className="hello">
           {({ getRootProps, getInputProps, isDragActive, isDragReject }) => {
             return (
-              <UploadContainer
-                isDragActive={isDragActive}
-                isDragReject={isDragReject}
-                {...getRootProps()}
-              >
+              <UploadContainer isDragActive={isDragActive} isDragReject={isDragReject} {...getRootProps()}>
                 <input {...getInputProps()} />
                 {isDragActive ? (
-                  <p className="custom-upload-text">Drop files here...</p>
+                  <p className="custom-upload-text">Drop Images here...</p>
                 ) : (
                   <>
                     <p className="custom-upload-text">
-                      Drag a file here or{" "}
-                      <span className="upload-tag">browse</span> for a file to
-                      upload
+                      Drag a images here or <span className="upload-tag">browse</span> for a image to upload
                     </p>
                   </>
                 )}
@@ -142,12 +134,7 @@ export class UploadPage extends Component {
         </Dropzone>
 
         <DisplayFileList>{files}</DisplayFileList>
-        <CustomButton
-          type="primary"
-          onClick={this.onsubmit}
-          disabled={fileList.length === 0}
-          loading={uploading}
-        >
+        <CustomButton type="primary" onClick={this.onsubmit} disabled={fileList.length === 0} loading={uploading}>
           {uploading ? (
             <>
               <Icon

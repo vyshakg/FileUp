@@ -12,26 +12,11 @@ function CustomHeader() {
         </h2>
       </div>
       <div className="navlink-header">
-        <NavLink
-          to="/allfiles"
-          activeClassName="active-header-navlink"
-          className="header-navlink"
-        >
-          <h2 className="header-navlink-h2">All files</h2>
+        <NavLink exact to="/" className="header-navlink">
+          <h2 className="header-navlink-h2">Upload</h2>
         </NavLink>
-        <NavLink
-          to="/yourfiles"
-          activeClassName="active-header-navlink"
-          className="header-navlink"
-        >
-          <h2 className="header-navlink-h2">Your files</h2>
-        </NavLink>
-        <NavLink
-          to="/analyze"
-          activeClassName="active-header-navlink"
-          className="header-navlink"
-        >
-          <h2 className="header-navlink-h2">Analyze</h2>
+        <NavLink to="/yourfiles">
+          <h2 className="header-navlink-h2">Images</h2>
         </NavLink>
       </div>
     </AppHeader>

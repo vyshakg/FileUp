@@ -35,15 +35,7 @@
 .header-navlink {
   margin-right: 3rem;
 }
-.active-header-navlink {
-  background: white;
-  color: #437efd;
-  text-decoration: none;
-}
-.active-header-navlink h2 {
-  color: #437efd;
-  text-decoration: none !important;
-}
+
 .header-navlink:visited {
   text-decoration: none;
 }
