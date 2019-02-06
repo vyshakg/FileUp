@@ -5,6 +5,7 @@ export const UploadWrapper = styled.div`
   border-radius: 1rem;
   background: white;
   box-shadow: 1px 1px 20px 0px #969aa5;
+  margin-bottom: 3rem;
   @media (max-width: 630px) {
     width: 80vw;
   }

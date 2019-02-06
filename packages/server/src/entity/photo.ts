@@ -7,6 +7,9 @@ export class Photo extends BaseEntity {
   id: number;
 
   @Column()
+  originalFilename: string;
+
+  @Column()
   photoId: string;
 
   @Column()

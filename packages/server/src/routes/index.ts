@@ -1,3 +1,3 @@
-import fileRoute from "./file";
+import photoRoute from "./photo";
 import userRoute from "./user";
-export default [fileRoute, userRoute];
+export default [photoRoute, userRoute];

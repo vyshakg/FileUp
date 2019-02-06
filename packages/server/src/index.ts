@@ -6,7 +6,7 @@ import express from "express";
 import "reflect-metadata";
 import { createTypeormConn } from "./createTypeormConn";
 import redisSession from "./redisSession";
-import { default as fileRoute, default as userRoute } from "./routes";
+import { default as photoRoute, default as userRoute } from "./routes";
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ const CORSconfig = {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(redisSession());
     app.use(userRoute);
-    app.use(fileRoute);
+    app.use(photoRoute);
 
     app.listen(PORT, () => {
       console.log(chalk.bgBlueBright(`server started at  http://localhost:${PORT}`));
