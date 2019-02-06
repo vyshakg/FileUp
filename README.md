@@ -7,7 +7,7 @@ A fileUp is a website where a users can upload a image and view the images.
 - [ ] use media query
 
 * - [x] added media query for the upload page
-* - [ ] need to add media query for the App header using maybe antd
+* - [ ] need to add media query for the App header using maybe (custom)
 
 - [x] add the user login system.
 - [ ] guest system to walk through the app.

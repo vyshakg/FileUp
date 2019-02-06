@@ -1,3 +1,5 @@
 @import "~antd/dist/antd.css";
 @import "./uploadPage//upload.css";
 @import "./Applayout/AppLayout.css";
+@import "./login.css";
+@import url("https://fonts.googleapis.com/css?family=Poppins:700");

@@ -1,7 +1,8 @@
 import { Layout } from "antd";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { CustomFooter, CustomHeader, UploadPage } from "./containers";
+import { CustomFooter, CustomHeader, LoginPage, UploadPage } from "./containers";
+import SignUpPage from "./containers/SignUpPage";
 
 const { Content } = Layout;
 
@@ -11,7 +12,9 @@ function App() {
       <CustomHeader />
       <Content>
         <Switch>
-          <Route exact path="/" component={UploadPage} />
+          <Route exact path="/upload" component={UploadPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/signup" component={SignUpPage} />
         </Switch>
       </Content>
       <CustomFooter />
