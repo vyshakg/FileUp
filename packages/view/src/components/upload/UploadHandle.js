@@ -2,9 +2,9 @@ import { Icon, notification } from "antd";
 import Axios from "axios";
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
-import { CustomButton, DisplayFileList, FileList, UploadContainer } from "../../layouts";
+import {CustomButton ,DisplayFileList ,FileList ,UploadContainer} from '../../css/uploadPage/UploadPage';
 import formatFileSize from "../../utils/formatFileSize";
-// import FileTypeIcon from "./FileTypeIcon";
+
 
 export class UploadPage extends Component {
   state = {

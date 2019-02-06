@@ -5,6 +5,12 @@ export const UploadWrapper = styled.div`
   border-radius: 1rem;
   background: white;
   box-shadow: 1px 1px 20px 0px #969aa5;
+  @media (max-width: 630px) {
+    width: 80vw;
+  }
+  @media (max-width: 460px) {
+    width: 80vw;
+  }
 `;
 export const Header = styled.h1`
   font-family: "Noto Sans", sans-serif;
@@ -12,6 +18,13 @@ export const Header = styled.h1`
   font-size: -webkit-xxx-large;
   margin-top: 2rem;
   margin-bottom: 0;
+  @media (max-width: 850px) {
+    font-size: 2.2rem;
+    margin-top: 1.1rem;
+  }
+  @media (max-width: 450px) {
+    font-size: x-large;
+  }
 `;
 export const CustomButton = styled.button`
   background-color: #1890ff;
@@ -30,6 +43,14 @@ export const CustomButton = styled.button`
     &:hover {
       background: #1d6fbb;
     }
+    @media (max-width: 630px) {
+      width: 12rem;
+      padding : 0.85rem
+    }
+    @media (max-width: 460px) {
+      width: 8rem;
+      padding : 8px;
+    }
 `;
 
 export const UploadContainer = styled.div`
@@ -42,12 +63,8 @@ export const UploadContainer = styled.div`
   &:hover {
     border-color: #40a9ff;
   }
-  border: ${props =>
-    props.isDragReject || props.isDragActive
-      ? "2px dashed #40a9ff"
-      : " 1px dashed #d9d9d9"};
-  background-color: ${props =>
-    props.isDragReject || props.isDragActive ? "#eee" : "#ececec"};
+  border: ${props => (props.isDragReject || props.isDragActive ? "2px dashed #40a9ff" : " 1px dashed #d9d9d9")};
+  background-color: ${props => (props.isDragReject || props.isDragActive ? "#eee" : "#ececec")};
 `;
 export const FileList = styled.div`
   padding: 0.5rem;

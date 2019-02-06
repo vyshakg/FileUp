@@ -1,7 +1,8 @@
 import { Icon } from "antd";
 import React from "react";
 import UploadHandle from "../components/upload/UploadHandle";
-import { Header, MainContainer, UploadWrapper } from "../layouts";
+import { MainContainer } from "../css/Applayout/MainContainer";
+import { Header, UploadWrapper } from "../css/uploadPage/UploadPage";
 
 function uploadPage() {
   return (
