@@ -17,3 +17,4 @@ A fileUp is a website where a users can upload a image and view the images.
 - [ ] add view all images.
 - [ ] add a upgrade plan in the header with sep page.
 - [ ] add a stripe for to take a money
+- [x] testing integration is done and tesing of login is complete.
