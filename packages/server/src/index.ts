@@ -16,22 +16,22 @@ const CORSconfig = {
   credentials: true,
   origin: process.env.NODE_ENV === "production" ? "" : "http://localhost:3000"
 };
+export const app = express();
 
-(async () => {
-  try {
+const startServer = async () => {
+  if (!(process.env.NODE_ENV === "test")) {
     await createTypeormConn();
-
-    const app = express();
-    app.use(cors(CORSconfig));
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(redisSession());
-    app.use(userRoute);
-    app.use(photoRoute);
-
-    app.listen(PORT, () => {
-      console.log(chalk.bgBlueBright(`server started at  http://localhost:${PORT}`));
-    });
-  } catch (e) {
-    console.log(chalk.bgRedBright(e));
   }
-})();
+
+  app.use(cors(CORSconfig));
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(redisSession());
+  app.use(userRoute);
+  app.use(photoRoute);
+
+  app.listen(PORT, () => {
+    console.log(chalk.bgBlueBright(`server started at  http://localhost:${PORT}`));
+  });
+};
+
+startServer().catch(e => console.log(chalk.bgRedBright(e)));
