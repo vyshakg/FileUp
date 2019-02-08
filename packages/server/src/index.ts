@@ -33,5 +33,6 @@ const CORSconfig = {
     });
   } catch (e) {
     console.log(chalk.bgRedBright(e));
+    process.exit(1);
   }
 })();
