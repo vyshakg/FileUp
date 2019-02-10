@@ -1,15 +1,16 @@
-import { Icon, notification } from "antd";
+import { Icon } from "antd";
 import Axios from "axios";
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
-import {CustomButton ,DisplayFileList ,FileList ,UploadContainer} from '../../css/uploadPage/UploadPage';
+import { CustomButton, DisplayFileList, FileList, UploadContainer } from "../../css/uploadPage/UploadPage";
 import formatFileSize from "../../utils/formatFileSize";
-
-
+import ErrorNotification from "../notification/errorNotification";
+import SuccessNotification from "../notification/successNotification";
 export class UploadPage extends Component {
   state = {
     fileList: [],
-    uploading: false
+    uploading: false,
+    toStore: []
   };
 
   onRemoveHandle = file => {
@@ -29,70 +30,76 @@ export class UploadPage extends Component {
       this.setState({ fileList: [...this.state.fileList, ...acceptedFiles] });
     }
   };
-  uploadFiles = file => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
-    Axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`, formData)
-      .then(res => {
-        this.setState({
-          fileList: [],
-          uploading: false
-        });
-        console.log(res);
-        notification.open({
-          duration: 6,
-          message: "Upload Successfull",
-          description: `Your image ${res.data.original_filename} are successfully added to the Cloud.`,
-          icon: (
-            <Icon
-              type="smile"
-              style={{
-                color: "#52c41a",
-                fontSize: "2rem"
-              }}
-            />
-          )
-        });
-      })
-      .catch(err => {
-        this.setState({
-          uploading: false
-        });
-        console.log(err);
-        notification.open({
-          message: "Upload Unsuccessfull",
-          description: "Server Error! try after sometime",
-          icon: (
-            <Icon
-              type="frown"
-              style={{
-                color: "#f5232e",
-                fontSize: "2rem"
-              }}
-            />
-          )
-        });
+  uploadFiles = async fileList => {
+    let count = 0;
+    return new Promise((resolve, reject) => {
+      fileList.forEach(file => {
+        const formData = new FormData();
+
+        formData.append("file", file);
+        formData.append("upload_preset", process.env.REACT_APP_UPLOAD_PRESET);
+
+        Axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`, formData)
+          .then(res => {
+            const toStore = {
+              originalFilename: res.data.original_filename,
+              photoId: res.data.public_id,
+              size: res.data.bytes
+            };
+            count++;
+            this.setState({ toStore: [...this.state.toStore, toStore] });
+
+            if (count === fileList.length) {
+              resolve();
+            }
+          })
+          .catch(() => {
+            this.setState({
+              uploading: false
+            });
+            reject();
+          });
       });
+    });
   };
-  onsubmit = () => {
+  onsubmit = async () => {
     const { fileList } = this.state;
 
     this.setState({
       uploading: true
     });
-    fileList.forEach(file => {
-      this.uploadFiles(file);
-    });
 
-    // const config = {
-    //   onUploadProgress: progressEvent => {
-    //     const percentCompleted = Math.round(
-    //       (progressEvent.loaded * 100) / progressEvent.total
-    //     );
-    //     this.setState({ percentCompleted });
-    //   }
-    // };
+    await this.uploadFiles(fileList)
+      .then(() => {
+        this.uploadserver();
+        this.setState({
+          uploading: false,
+          fileList: [],
+          toStore: []
+        });
+      })
+      .catch(() =>
+        ErrorNotification({ message: "Upload Unsuccessfull", description: "Server Error! try after sometime" })
+      );
+  };
+  uploadserver = () => {
+    console.log(this.state.toStore);
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    Axios.post("/api/upload", { data: this.state.toStore }, config)
+      .then(() => {
+        SuccessNotification({
+          message: "Upload Successfull",
+          description: "Your images are successfully added to the Cloud."
+        });
+      })
+      .catch(() =>
+        ErrorNotification({ message: "Upload Unsuccessfull", description: "Server Error! try after sometime" })
+      );
   };
   render() {
     const { uploading, fileList } = this.state;
@@ -114,7 +121,7 @@ export class UploadPage extends Component {
     });
     return (
       <>
-        <Dropzone onDrop={this.onDrop} className="hello">
+        <Dropzone onDrop={this.onDrop} accept="image/*">
           {({ getRootProps, getInputProps, isDragActive, isDragReject }) => {
             return (
               <UploadContainer isDragActive={isDragActive} isDragReject={isDragReject} {...getRootProps()}>

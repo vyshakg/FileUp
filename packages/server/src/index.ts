@@ -25,6 +25,8 @@ const startServer = async () => {
 
   app.use(cors(CORSconfig));
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
+  app.use(bodyParser.raw());
   app.use(redisSession());
   app.use(userRoute);
   app.use(photoRoute);

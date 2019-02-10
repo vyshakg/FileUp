@@ -9,6 +9,7 @@ const userRoute = express.Router();
 
 userRoute.post("/api/register", async (req, res) => {
   try {
+    console.log(req.body);
     const { username, email, password } = req.body;
 
     await Joi.validate({ username, email, password }, signUp, { abortEarly: false });

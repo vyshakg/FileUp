@@ -18,8 +18,8 @@ export class Photo extends BaseEntity {
   @CreateDateColumn()
   uploadedDate: Date;
 
-  @Column({ nullable: true })
-  favouritePhotos: boolean;
+  @Column({ nullable: true, default: false })
+  favouritePhoto: boolean;
 
   @ManyToOne(type => User, user => user.photos)
   uploadedUser: User;
