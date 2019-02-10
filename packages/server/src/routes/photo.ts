@@ -1,19 +1,28 @@
 import express from "express";
 import { createQueryBuilder } from "typeorm";
+// import { Photo } from "../entity/photo";
 
 const photoRoute = express.Router();
+interface PhotoData {
+  originalFilename: string;
+  photoId: string;
+  size: number;
+  uploadedUser?: string;
+}
 
 photoRoute.post("/api/upload", async (req, res) => {
-  const { photoId } = req.body;
+  const data: PhotoData[] = req.body.data;
   console.log(req.body);
-
+  const values = data.map(arr => {
+    return { ...arr, uploadedUser: req.session!.userId };
+  });
+  console.log(values);
   // await getConnection()
   //   .createQueryBuilder()
   //   .insert()
-  //   .into(User)
+  //   .into(Photo)
   //   .values([
-  //     // { firstName: "Timber", lastName: "Saw" },
-  //     // { firstName: "Phantom", lastName: "Lancer" }
+
   //   ])
   //   .execute();
 
