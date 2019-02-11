@@ -1,6 +1,7 @@
 import { Form, Icon, Input } from "antd";
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import { register } from "../../Redux-actions/User";
 export class SignUpForm extends Component {
   state = {
     data: {
@@ -14,6 +15,7 @@ export class SignUpForm extends Component {
   };
   onSubmit = () => {
     console.log(this.state.data);
+    this.props.register(this.state.data).then(() => console.log("goto upload page"));
   };
   render() {
     const { data } = this.state;
@@ -52,7 +54,7 @@ export class SignUpForm extends Component {
             <div className="wrap-login100-form-btn">
               <div className="login100-form-bgbtn" />
               <button className="login100-form-btn" onClick={this.onSubmit}>
-                Login
+                Create
               </button>
             </div>
           </div>
@@ -62,4 +64,7 @@ export class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+export default connect(
+  null,
+  { register }
+)(SignUpForm);

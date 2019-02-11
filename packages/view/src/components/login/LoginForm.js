@@ -1,7 +1,7 @@
 import { Form, Icon, Input } from "antd";
 import React, { Component } from "react";
-import { user } from "../../api/userApi";
-
+import { connect } from "react-redux";
+import { login } from "../../Redux-actions/User";
 export class LoginForm extends Component {
   state = {
     data: {
@@ -12,10 +12,11 @@ export class LoginForm extends Component {
   handleChange = ({ target }) => {
     this.setState({ data: { ...this.state.data, [target.name]: target.value } });
   };
-  onSubmit = async () => {
+  onSubmit = () => {
     console.log(this.state.data);
-    const response = await user.login(this.state.data);
-    console.log(response);
+    this.props.login(this.state.data).then(() => {
+      console.log("goto upload page");
+    });
   };
   render() {
     const { data } = this.state;
@@ -55,4 +56,7 @@ export class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default connect(
+  null,
+  { login }
+)(LoginForm);
