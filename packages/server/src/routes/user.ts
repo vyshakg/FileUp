@@ -25,8 +25,11 @@ userRoute.post("/api/register", async (req, res) => {
       });
       newUser = await newUser.save();
 
+      req.session!.userId = newUser.id;
+
       return res.status(200).json({
         ok: true,
+        id: newUser.id,
         username: newUser.username,
         email: newUser.email
       });
@@ -60,6 +63,20 @@ userRoute.post("/api/login", async (req, res) => {
     console.log(chalk.red(e));
     return res.status(401).json(formatError(e));
   }
+});
+
+userRoute.post("/api/logout", (req, res) => {
+  // TODO : check where is user is alredy in and clear the redis ana cookie
+  return new Promise((resolve, reject) =>
+    req.session!.destroy(err => {
+      if (err) {
+        console.log(err);
+        return reject(false);
+      }
+      res.clearCookie("qid");
+      return resolve(true);
+    })
+  );
 });
 
 export default userRoute;
