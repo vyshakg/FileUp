@@ -2,10 +2,10 @@ import { Icon } from "antd";
 import Axios from "axios";
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
-import { CustomButton, DisplayFileList, FileList, UploadContainer } from "../../css/uploadPage/UploadPage";
+import { CustomButton, DisplayFileList, FileList, UploadContainer } from "../../css/upload/Upload";
 import formatFileSize from "../../utils/formatFileSize";
-import ErrorNotification from "../notification/errorNotification";
-import SuccessNotification from "../notification/successNotification";
+import ErrorNotification from "../notification/ErrorNotification";
+import SuccessNotification from "../notification/SuccessNotification";
 export class UploadPage extends Component {
   state = {
     fileList: [],

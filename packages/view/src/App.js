@@ -1,15 +1,15 @@
 import { Layout } from "antd";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { CustomFooter, CustomHeader, LoginPage, UploadPage } from "./containers";
-import SignUpPage from "./containers/SignUpPage";
-
+import CustomFooter from "./components/common/Footer";
+import Header from "./components/common/Header";
+import { LoginPage, SignUpPage, UploadPage } from "./pages";
 const { Content } = Layout;
 
 function App() {
   return (
     <Layout>
-      <CustomHeader />
+      <Header />
       <Content>
         <Switch>
           <Route exact path="/upload" component={UploadPage} />

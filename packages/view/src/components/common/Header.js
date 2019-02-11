@@ -1,8 +1,8 @@
 import { Icon } from "antd";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { AppHeader } from "../css/Applayout/MainContainer";
-function CustomHeader() {
+import { AppHeader } from "../../css/common/common";
+function Header() {
   return (
     <AppHeader>
       <div style={{ display: "inline-flex", cursor: "pointer" }}>
@@ -25,5 +25,5 @@ function CustomHeader() {
     </AppHeader>
   );
 }
-// className="header-navlink"
-export default CustomHeader;
+
+export default Header;

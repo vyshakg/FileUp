@@ -1,5 +1,6 @@
 import { Form, Icon, Input } from "antd";
 import React, { Component } from "react";
+import { user } from "../../api/userApi";
 
 export class LoginForm extends Component {
   state = {
@@ -11,8 +12,10 @@ export class LoginForm extends Component {
   handleChange = ({ target }) => {
     this.setState({ data: { ...this.state.data, [target.name]: target.value } });
   };
-  onSubmit = () => {
+  onSubmit = async () => {
     console.log(this.state.data);
+    const response = await user.login(this.state.data);
+    console.log(response);
   };
   render() {
     const { data } = this.state;

@@ -1,7 +1,7 @@
 import { Icon } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
-import SignUpForm from "../components/SignUpForm";
+import SignUpForm from "../components/signup/SignUpForm";
 function SignUpPage() {
   return (
     <div className="wrapper">
