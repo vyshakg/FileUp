@@ -13,8 +13,9 @@ A fileUp is a website where a users can upload a image and view the images.
 - [ ] guest system to walk through the app.
 - [x] use sessions to login users.
 - [x] use cloudinary for the image upload.
-- [ ] send back the information form the frontend to backend
+- [x] send back the information form the frontend to backend
 - [ ] add view all images.
-- [ ] add a upgrade plan in the header with sep page.
-- [ ] add a stripe for to take a money
+- [x] add a upgrade plan in the header with sep page.
+- [ ] add a stripe for to take a money.
 - [x] testing integration is done and tesing of login is complete.
+- [ ] add all the data sent back from the frontend to database with correct insertion of one to many relationship.
