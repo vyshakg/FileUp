@@ -8,6 +8,6 @@ async function isAuthenticated(req: Request, res: Response, next: NextFunction) 
     return next();
   }
 
-  res.status(401).json({ message: "Session time please login" });
+  res.status(401).json({ isLoggedIn: false, description: "Session timed Out! please login" });
 }
 export default isAuthenticated;

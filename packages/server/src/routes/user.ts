@@ -5,6 +5,7 @@ import Joi from "joi";
 import { User } from "../entity/User";
 import formatError from "../utils/formatError";
 import { signIn, signUp } from "../validation";
+import isAuthenticated from "./middleware/isAuthenticated";
 const userRoute = express.Router();
 
 userRoute.post("/api/register", async (req, res) => {
@@ -76,6 +77,10 @@ userRoute.post("/api/logout", (req, res) => {
     res.clearCookie("qid");
     return res.json(true);
   });
+});
+
+userRoute.get("/api/isauth", isAuthenticated, (req, res) => {
+  return res.status(200).json({ isLoggedIn: true });
 });
 
 export default userRoute;
