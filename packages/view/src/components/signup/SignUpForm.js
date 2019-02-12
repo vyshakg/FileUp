@@ -14,7 +14,7 @@ export class SignUpForm extends Component {
     this.setState({ data: { ...this.state.data, [target.name]: target.value } });
   };
   onSubmit = () => {
-    console.log(this.state.data);
+    
     this.props.register(this.state.data).then(() => console.log("goto upload page"));
   };
   render() {

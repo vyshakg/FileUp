@@ -67,16 +67,15 @@ userRoute.post("/api/login", async (req, res) => {
 
 userRoute.post("/api/logout", (req, res) => {
   // TODO : check where is user is alredy in and clear the redis ana cookie
-  return new Promise((resolve, reject) =>
-    req.session!.destroy(err => {
-      if (err) {
-        console.log(err);
-        return reject(false);
-      }
-      res.clearCookie("qid");
-      return resolve(true);
-    })
-  );
+
+  req.session!.destroy(err => {
+    if (err) {
+      console.log(err);
+      return res.status(401).json(false);
+    }
+    res.clearCookie("qid");
+    return res.json(true);
+  });
 });
 
 export default userRoute;

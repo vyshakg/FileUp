@@ -1,6 +1,7 @@
 import express from "express";
 import { getConnection, getRepository } from "typeorm";
 import { Photo } from "../entity/photo";
+import isAuthenticated from "./middleware/isAuthenticated";
 
 const photoRoute = express.Router();
 interface PhotoData {
@@ -10,7 +11,7 @@ interface PhotoData {
   uploadedUser?: string;
 }
 
-photoRoute.post("/api/upload", async (req, res) => {
+photoRoute.post("/api/upload", isAuthenticated, async (req, res) => {
   try {
     const data: PhotoData[] = req.body.data;
     const values = data.map(arr => {
@@ -33,7 +34,7 @@ photoRoute.post("/api/upload", async (req, res) => {
   }
 });
 
-photoRoute.get("/api/allpics", async (req, res) => {
+photoRoute.get("/api/allpics", isAuthenticated, async (req, res) => {
   try {
     const photos = await getRepository(Photo)
       .createQueryBuilder("photo")
