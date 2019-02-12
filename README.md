@@ -18,4 +18,8 @@ A fileUp is a website where a users can upload a image and view the images.
 - [x] add a upgrade plan in the header with sep page.
 - [ ] add a stripe for to take a money.
 - [x] testing integration is done and tesing of login is complete.
-- [ ] add all the data sent back from the frontend to database with correct insertion of one to many relationship.
+- [x] add all the data sent back from the frontend to database with correct insertion of one to many relationship.
+- [ ] handle errors in the login and signup
+- [ ] if user not logged in have options in header as signin
+- [ ] persist the user logged in information in the redux
+- [ ] client-side verification of the signout and signin
