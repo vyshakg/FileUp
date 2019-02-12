@@ -1,6 +1,7 @@
 import { Form, Icon, Input } from "antd";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { login } from "../../Redux-actions/User";
 export class LoginForm extends Component {
   state = {
@@ -13,9 +14,8 @@ export class LoginForm extends Component {
     this.setState({ data: { ...this.state.data, [target.name]: target.value } });
   };
   onSubmit = () => {
-    console.log(this.state.data);
     this.props.login(this.state.data).then(() => {
-      console.log("goto upload page");
+      this.props.history.push("/upload");
     });
   };
   render() {
@@ -56,7 +56,9 @@ export class LoginForm extends Component {
   }
 }
 
-export default connect(
-  null,
-  { login }
-)(LoginForm);
+export default withRouter(
+  connect(
+    null,
+    { login }
+  )(LoginForm)
+);

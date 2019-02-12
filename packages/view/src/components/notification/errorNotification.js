@@ -1,7 +1,7 @@
 import { Icon, notification } from "antd";
 import React from "react";
 
-function ErrorNotification({ message, description }) {
+function ErrorNotification({ message = "Upload Unsuccessfull", description = "Server Error! try after sometime" }) {
   return notification.open({
     message,
     description,

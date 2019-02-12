@@ -12,11 +12,8 @@ function SignUpPage() {
             <Icon type="cloud-download" className="login-base-icon" />
             <SignUpForm />
             <div className="login-signup-link-wrapper">
-              <span className="">already have an account?</span>
-              <Link className="txt2" to="/login">
-                {" "}
-                Signin
-              </Link>
+              <span>already have an account?</span>
+              <Link to="/login"> Signin</Link>
             </div>
           </div>
         </div>

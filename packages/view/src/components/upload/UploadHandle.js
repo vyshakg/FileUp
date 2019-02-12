@@ -2,6 +2,7 @@ import { Icon } from "antd";
 import Axios from "axios";
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
+import { withRouter } from "react-router";
 import { CustomButton, DisplayFileList, FileList, UploadContainer } from "../../css/upload/Upload";
 import formatFileSize from "../../utils/formatFileSize";
 import ErrorNotification from "../notification/ErrorNotification";
@@ -62,28 +63,37 @@ export class UploadPage extends Component {
       });
     });
   };
-  onsubmit = async () => {
+  onsubmit = () => {
     const { fileList } = this.state;
 
     this.setState({
       uploading: true
     });
-
-    await this.uploadFiles(fileList)
-      .then(() => {
-        this.uploadserver();
-        this.setState({
-          uploading: false,
-          fileList: [],
-          toStore: []
-        });
+    Axios.get("/api/isauth")
+      .then(async res => {
+        if (res.data.isLoggedIn) {
+          await this.uploadFiles(fileList)
+            .then(() => {
+              this.uploadserver();
+            })
+            .catch(() =>
+              ErrorNotification({ message: "Upload Unsuccessfull", description: "Server Error! try after sometime" })
+            );
+        }
       })
-      .catch(() =>
-        ErrorNotification({ message: "Upload Unsuccessfull", description: "Server Error! try after sometime" })
-      );
+      .catch(err => {
+        if (!err.response.data.isLoggedIn) {
+          ErrorNotification({ description: err.response.data.description });
+          this.props.history.push("/login");
+        } else ErrorNotification();
+      });
+    this.setState({
+      uploading: false,
+      fileList: [],
+      toStore: []
+    });
   };
   uploadserver = () => {
-    console.log(this.state.toStore);
     const config = {
       headers: {
         "Content-Type": "application/json"
@@ -97,9 +107,12 @@ export class UploadPage extends Component {
           description: "Your images are successfully added to the Cloud."
         });
       })
-      .catch(() =>
-        ErrorNotification({ message: "Upload Unsuccessfull", description: "Server Error! try after sometime" })
-      );
+      .catch(err => {
+        if (!err.response.data.isLoggedIn) {
+          ErrorNotification({ description: err.response.data.description });
+          this.props.history.push("/login");
+        } else ErrorNotification();
+      });
   };
   render() {
     const { uploading, fileList } = this.state;
@@ -161,4 +174,4 @@ export class UploadPage extends Component {
   }
 }
 
-export default UploadPage;
+export default withRouter(UploadPage);
