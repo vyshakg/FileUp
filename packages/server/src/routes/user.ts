@@ -9,7 +9,6 @@ const userRoute = express.Router();
 
 userRoute.post("/api/register", async (req, res) => {
   try {
-    console.log(req.body);
     const { username, email, password } = req.body;
 
     await Joi.validate({ username, email, password }, signUp, { abortEarly: false });
@@ -24,7 +23,7 @@ userRoute.post("/api/register", async (req, res) => {
         password: hashPassword
       });
       newUser = await newUser.save();
-
+      console.log(newUser.id);
       req.session!.userId = newUser.id;
 
       return res.status(200).json({
@@ -53,6 +52,7 @@ userRoute.post("/api/login", async (req, res) => {
         req.session!.userId = user.id;
         return res.status(200).json({
           ok: true,
+          id: user.id,
           email: user.email,
           username: user.username
         });
