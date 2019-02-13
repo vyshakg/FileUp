@@ -18,7 +18,7 @@ function Header({ isLoggedIn }) {
         <NavLink exact to="/upload">
           <h2 className="header-navlink-h2">Upload</h2>
         </NavLink>
-        <NavLink to="/yourfiles">
+        <NavLink to="/images">
           <h2 className="header-navlink-h2">Images</h2>
         </NavLink>
         <NavLink to="/upgrade">
