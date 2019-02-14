@@ -1,6 +1,7 @@
+import { images } from "./imageApi";
 import { user } from "./userApi";
-
 const api = {
-  user
+  user,
+  images
 };
 export default api;
