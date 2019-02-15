@@ -24,3 +24,4 @@ A fileUp is a website where a users can upload a image and view the images.
 - [x] persist the user logged in information in the redux
 - [ ] client-side verification of the signout and signin
 - [ ] add a pagination to the images page
+- [ ] transition to react hooks
