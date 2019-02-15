@@ -15,7 +15,7 @@ function ImageFetch({ load, images }) {
   useEffect(() => {
     load();
   }, []);
-  console.log(images);
+
   return (
     <ImageHandle
       images={images.map(({ photoId, originalFilename }) => ({
