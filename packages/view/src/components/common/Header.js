@@ -1,9 +1,15 @@
 import { Icon } from "antd";
 import React from "react";
 import { connect } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 import { AppHeader } from "../../css/common/common";
-function Header({ isLoggedIn }) {
+import { logout } from "../../Redux-actions/User";
+import { persistor } from "../../Redux-store";
+async function signout(history, logout) {
+  await Promise.all([persistor.purge(), logout()]);
+  history.push("/");
+}
+function Header({ isLoggedIn, history, logout }) {
   return (
     <AppHeader>
       <Link to="/" className="removeActiceclass">
@@ -25,9 +31,10 @@ function Header({ isLoggedIn }) {
           <h2 className="header-navlink-h2">upgrade</h2>
         </NavLink>
         {isLoggedIn ? (
-          <NavLink to="/">
+          // eslint-disable-next-line
+          <a onClick={() => signout(history, logout)}>
             <h2 className="header-navlink-h2">signout</h2>
-          </NavLink>
+          </a>
         ) : (
           <NavLink to="/login">
             <h2 className="header-navlink-h2">signin</h2>
@@ -40,4 +47,9 @@ function Header({ isLoggedIn }) {
 function mapStateToProps(state) {
   return { isLoggedIn: !!state.User.id };
 }
-export default connect(mapStateToProps)(Header);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logout }
+  )(Header)
+);

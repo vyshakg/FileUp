@@ -2,9 +2,15 @@
 .image-layout {
   display: grid;
   margin: 0px 11.5rem 0 11.5rem;
-  grid-template-rows: 10rem auto;
+  grid-template-rows: 12rem auto;
 }
-
+.imageheader {
+  display: flex;
+  margin: 1rem 10rem 0 10rem;
+}
+.profilepic {
+  border-radius: 50%;
+}
 /* Each image css */
 .images-wrapper {
   display: flex;
