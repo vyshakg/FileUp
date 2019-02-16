@@ -11,21 +11,22 @@ function makeImageThumbnail(photoId) {
 function makeImageSrc(photoId) {
   return `https://res.cloudinary.com/imagecloudinaryapi/image/upload/${photoId}`;
 }
-function ImageFetch({ load, images }) {
+const ImageFetch = ({ load, images }) => {
   useEffect(() => {
     load();
   }, []);
 
   return (
     <ImageHandle
-      images={images.map(({ photoId, originalFilename }) => ({
+      images={images.map(({ photoId, originalFilename,id }) => ({
+        id,
         src: makeImageSrc(photoId),
         thumbnail: makeImageThumbnail(photoId),
         caption: originalFilename
       }))}
     />
   );
-}
+};
 function mapStatetoProps(state) {
   return { images: state.Images };
 }

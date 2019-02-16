@@ -1,92 +1,49 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Lightbox from "react-images";
+import RenderGallery from "./imagedisplay";
 
-class ImageHandle extends Component {
-  state = {
-    currentImage: 0,
-    lightboxIsOpen: false
-  };
-  openLightbox = (index, event) => {
+function ImageHandle({ images }) {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
+
+  const openLightbox = (index, event) => {
     event.preventDefault();
-    this.setState({
-      currentImage: index,
-      lightboxIsOpen: true
-    });
-  };
-  closeLightbox = () => {
-    this.setState({
-      currentImage: 0,
-      lightboxIsOpen: false
-    });
-  };
-  gotoPrevious = () => {
-    this.setState({
-      currentImage: this.state.currentImage - 1
-    });
-  };
-  closeLightbox() {
-    this.setState({
-      currentImage: 0,
-      lightboxIsOpen: false
-    });
-  }
-  gotoNext = () => {
-    this.setState({
-      currentImage: this.state.currentImage + 1
-    });
+
+    setCurrentImage(index);
+    setLightboxIsOpen(true);
   };
 
-  gotoImage = index => {
-    this.setState({
-      currentImage: index
-    });
+  const closeLightbox = () => {
+    setCurrentImage(0);
+    setLightboxIsOpen(false);
   };
-  handleClickImage = () => {
-    if (this.state.currentImage === this.props.images.length - 1) return;
-
-    this.gotoNext();
+  const gotoNext = () => {
+    setCurrentImage(currentImage + 1);
   };
 
-  renderGallery = () => {
-    const { images } = this.props;
+  const handleClickImage = images => {
+    if (currentImage === images.length - 1) return;
 
-    if (!images) return;
-
-    const gallery = images.map((obj, i) => {
-      return (
-        <div className="hovereffect" key={i} onClick={e => this.openLightbox(i, e)}>
-          <img src={obj.thumbnail} alt={obj.caption} />
-          <div className="overlay">
-            <h2>{obj.caption}</h2>
-            {/* <a class="info" href="/">
-              link here
-            </a> */}
-          </div>
-        </div>
-      );
-    });
-
-    return <div className="images-wrapper">{gallery}</div>;
+    gotoNext();
   };
-  render() {
-    return (
-      <>
-        {this.renderGallery()}
-        <Lightbox
-          images={this.props.images}
-          currentImage={this.state.currentImage}
-          isOpen={this.state.lightboxIsOpen}
-          onClickPrev={this.gotoPrevious}
-          onClickNext={this.gotoNext}
-          onClose={this.closeLightbox}
-          onClickThumbnail={this.gotoImage}
-          onClickImage={this.handleClickImage}
-          showThumbnails={true}
-          backdropClosesModal={true}
-        />
-      </>
-    );
-  }
+
+  return (
+    <>
+      <RenderGallery images={images} openLightbox={openLightbox} />
+      <Lightbox
+        images={images}
+        currentImage={currentImage}
+        isOpen={lightboxIsOpen}
+        onClickPrev={() => setCurrentImage(currentImage - 1)}
+        onClickNext={gotoNext}
+        onClose={closeLightbox}
+        onClickThumbnail={index => setCurrentImage(index)}
+        onClickImage={() => handleClickImage(images)}
+        showThumbnails={true}
+        backdropClosesModal={true}
+      />
+    </>
+  );
 }
 
 export default ImageHandle;
