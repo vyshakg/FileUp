@@ -1,6 +1,6 @@
 import { Icon } from "antd";
 import React from "react";
-import UploadHandle from "../components/upload/UploadHandle";
+import ServerUploadHandle from "../components/upload/ServerUploadHandle";
 import { MainContainer } from "../css/common/common";
 import { Header, UploadWrapper } from "../css/upload/Upload";
 
@@ -23,7 +23,7 @@ function uploadPage() {
         <Icon type="camera" theme="twoTone" twoToneColor="#eb2f96" className="custom-icon-style" />
 
         <div className="uploadHandle-wrapper">
-          <UploadHandle />
+          <ServerUploadHandle />
         </div>
       </UploadWrapper>
     </MainContainer>

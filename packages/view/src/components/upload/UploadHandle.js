@@ -3,7 +3,7 @@ import Axios from "axios";
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import { withRouter } from "react-router";
-import { CustomButton, DisplayFileList, FileList, UploadContainer } from "../../css/upload/Upload";
+import { CustomButton, DisplayFileListSC, FileList, UploadContainer } from "../../css/upload/Upload";
 import formatFileSize from "../../utils/formatFileSize";
 import ErrorNotification from "../notification/ErrorNotification";
 import SuccessNotification from "../notification/SuccessNotification";
@@ -153,7 +153,7 @@ export class UploadPage extends Component {
           }}
         </Dropzone>
 
-        <DisplayFileList>{files}</DisplayFileList>
+        <DisplayFileListSC>{files}</DisplayFileListSC>
         <CustomButton type="primary" onClick={this.onsubmit} disabled={fileList.length === 0} loading={uploading}>
           {uploading ? (
             <>

@@ -74,7 +74,7 @@ export const FileList = styled.div`
   width: 200px;
   overflow-wrap: break-word;
 `;
-export const DisplayFileList = styled.div`
+export const DisplayFileListSC = styled.div`
   display: flex;
   margin: 0 -5px;
   justify-content: center;
