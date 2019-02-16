@@ -50,4 +50,25 @@ photoRoute.get("/api/allpics", isAuthenticated, async (req, res) => {
   }
 });
 
+photoRoute.post("/api/delete", isAuthenticated, async (req, res) => {
+  try {
+    const id = req.body.id;
+
+    const photo = await getConnection()
+      .createQueryBuilder()
+      .delete()
+      .from(Photo)
+      .where("id = :id", { id })
+      .execute();
+
+    return res.json({
+      ok: true,
+      id
+    });
+  } catch (e) {
+    console.log(e);
+    return res.json({ ok: false });
+  }
+});
+
 export default photoRoute;
