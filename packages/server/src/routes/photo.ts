@@ -60,7 +60,7 @@ photoRoute.post("/api/delete", isAuthenticated, async (req, res) => {
       .from(Photo)
       .where("id = :id", { id })
       .execute();
-
+    console.log(photo);
     return res.json({
       ok: true,
       id
