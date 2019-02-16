@@ -235,7 +235,7 @@ export namespace v2 {
     function delete_all_resources(args: any): any;
     function delete_derived_by_transformation(args: any): any;
     function delete_derived_resources(args: any): any;
-    function delete_resources(args: any): any;
+    function delete_resources(args: any, callback: Function): any;
     function delete_resources_by_prefix(args: any): any;
     function delete_resources_by_tag(args: any): any;
     function delete_streaming_profile(args: any): any;
@@ -277,7 +277,7 @@ export namespace v2 {
     function usage(args: any): any;
   }
   function cloudinary_js_config(): any;
-  function config(new_config: any, new_value?: any): any;
+  function config(new_config?: any, new_value?: any): any;
   function image(source: any, options: any): any;
   function picture(public_id: any, options: any): any;
   class search {

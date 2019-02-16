@@ -1,6 +1,10 @@
 import cloudinary from "cloudinary";
-cloudinary.v2.config({
-  cloud_name: "imagecloudinaryapi",
-  api_key: "874837483274837",
-  api_secret: "a676b67565c6767a6767d6767f676fe1"
-});
+
+export default (): any => {
+  cloudinary.v2.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET_KEY
+  });
+  return cloudinary.v2;
+};

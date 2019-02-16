@@ -1,6 +1,8 @@
+// import cloudinary from "cloudinary";
 import express from "express";
 import { getConnection, getRepository } from "typeorm";
 import { Photo } from "../entity/photo";
+import cloudinary from "../utils/cloudinarySetup";
 import isAuthenticated from "./middleware/isAuthenticated";
 
 const photoRoute = express.Router();
@@ -54,20 +56,27 @@ photoRoute.post("/api/delete", isAuthenticated, async (req, res) => {
   try {
     const id = req.body.id;
 
-    const photo = await getConnection()
-      .createQueryBuilder()
-      .delete()
-      .from(Photo)
-      .where("id = :id", { id })
-      .execute();
-    console.log(photo);
-    return res.json({
-      ok: true,
-      id
-    });
+    const photo = await Photo.findOne({ id });
+    if (photo) {
+      cloudinary().api.delete_resources([photo.photoId], async (error: any, result: any) => {
+        if (error) {
+          console.log(error);
+          throw new Error(error);
+        }
+        await Photo.delete({ id });
+        return res.json({
+          ok: true,
+          id
+        });
+      });
+    } else {
+      return res.status(400).json({
+        ok: false
+      });
+    }
   } catch (e) {
     console.log(e);
-    return res.json({ ok: false });
+    return res.status(400).json({ ok: false });
   }
 });
 
