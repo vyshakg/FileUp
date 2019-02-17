@@ -13,7 +13,7 @@ function totalBytesUsed(images) {
 function noOfFavouritePhoto(images) {
   let count = 0;
   images.forEach(element => {
-    if (element.avouritePhoto) count += 1;
+    if (element.favouritePhoto) count += 1;
   });
   return count;
 }

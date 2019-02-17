@@ -1,7 +1,8 @@
 import api from "../../api";
 import ErrorNotification from "../notification/ErrorNotification";
 import SuccessNotification from "../notification/SuccessNotification";
-function onSubmitHandle(fileList, setFileList, uploading, setUploading) {
+
+function SubmitHandle(fileList, setFileList, uploading, setUploading, history) {
   setUploading(true);
   api.user
     .isAuth()
@@ -9,7 +10,7 @@ function onSubmitHandle(fileList, setFileList, uploading, setUploading) {
       if (res.data.isLoggedIn) {
         await uploadFiles(fileList)
           .then(data => {
-            uploadserver(data, setUploading, setFileList);
+            uploadserver(data, setUploading, setFileList, history);
           })
           .catch(() => {
             setUploading(false);
@@ -24,7 +25,7 @@ function onSubmitHandle(fileList, setFileList, uploading, setUploading) {
       setUploading(false);
       if (!err.response.data.isLoggedIn) {
         ErrorNotification({ description: err.response.data.description });
-        this.props.history.push("/login");
+        history.push("/login");
       } else ErrorNotification();
     });
 }
@@ -56,7 +57,7 @@ const uploadFiles = (fileList, setUploading) => {
   });
 };
 
-const uploadserver = (data, setUploading, setFileList) => {
+const uploadserver = (data, setUploading, setFileList, history) => {
   api.images
     .upload(data)
     .then(() => {
@@ -70,9 +71,9 @@ const uploadserver = (data, setUploading, setFileList) => {
     .catch(err => {
       if (!err.response.data.isLoggedIn) {
         ErrorNotification({ description: err.response.data.description });
-        this.props.history.push("/login");
+        history.push("/login");
       } else ErrorNotification();
       setUploading(false);
     });
 };
-export default onSubmitHandle;
+export default SubmitHandle;

@@ -18,8 +18,9 @@ const ImageFetch = ({ load, images }) => {
 
   return (
     <ImageHandle
-      images={images.map(({ photoId, originalFilename,id }) => ({
+      images={images.map(({ photoId, originalFilename, id, favouritePhoto }) => ({
         id,
+        favouritePhoto,
         src: makeImageSrc(photoId),
         thumbnail: makeImageThumbnail(photoId),
         caption: originalFilename

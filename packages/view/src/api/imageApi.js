@@ -21,5 +21,10 @@ export const images = {
     return Axios.post("/api/delete", id).then(res => {
       return res.data;
     });
+  },
+  favourite: function(id) {
+    return Axios.post("/api/favourite", id).then(res => {
+      return res.data;
+    });
   }
 };

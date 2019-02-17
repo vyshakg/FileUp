@@ -1,13 +1,39 @@
+/* eslint jsx-a11y/anchor-is-valid: 0 */ // --> OFF
+import { Modal } from "antd";
 import React from "react";
 import { connect } from "react-redux";
-import { deletePhoto } from "../../Redux-actions/Images";
-async function onClickDelete(e, id, deletePhoto) {
+import { deletePhoto, favouritePhotoAction } from "../../Redux-actions/Images";
+import SuccessNotification from "../notification/SuccessNotification";
+
+const confirm = Modal.confirm;
+
+function onClickFavourite(e, id, favouritePhotoAction) {
   e.cancelBubble = true;
   if (e.stopPropagation) e.stopPropagation();
-  console.log(id);
-  await deletePhoto({ id });
+  favouritePhotoAction({ id });
 }
-function RenderGallery({ images, openLightbox, deletePhoto }) {
+
+function onClickDelete(e, id, deletePhoto) {
+  e.cancelBubble = true;
+  if (e.stopPropagation) e.stopPropagation();
+
+  confirm({
+    title: "Do you Want to delete this image?",
+    centered: true,
+    okText: "Yes",
+    okType: "danger",
+    cancelText: "No",
+    onOk() {
+      deletePhoto({ id }).then(() => {
+        SuccessNotification({ message: "Image deleted Successfully" });
+      });
+    },
+    onCancel() {
+      return;
+    }
+  });
+}
+function RenderGallery({ images, openLightbox, deletePhoto, favouritePhotoAction }) {
   if (!images) return;
 
   const gallery = images.map((obj, i) => {
@@ -16,10 +42,20 @@ function RenderGallery({ images, openLightbox, deletePhoto }) {
         <img src={obj.thumbnail} alt={obj.caption} />
         <div className="overlay" onClick={e => openLightbox(i, e)}>
           <h2>{obj.caption}</h2>
-          {/* eslint-disable-next-line */}
-          <a className="info" onClick={e => onClickDelete(e, obj.id, deletePhoto)}>
-            link here
-          </a>
+
+          <p style={{ marginTop: "150px" }}>
+            <a className="info" onClick={e => onClickDelete(e, obj.id, deletePhoto)} style={{ marginRight: "40px" }}>
+              <span className="fa fa-trash" />
+            </a>
+
+            <a
+              className="info"
+              style={obj.favouritePhoto ? yellowColor : whiteColor}
+              onClick={e => onClickFavourite(e, obj.id, favouritePhotoAction)}
+            >
+              <span className="fa fa-star" />
+            </a>
+          </p>
         </div>
       </div>
     );
@@ -27,8 +63,13 @@ function RenderGallery({ images, openLightbox, deletePhoto }) {
 
   return <div className="images-wrapper">{gallery}</div>;
 }
-
+const yellowColor = {
+  color: "yellow"
+};
+const whiteColor = {
+  color: "white"
+};
 export default connect(
   null,
-  { deletePhoto }
+  { deletePhoto, favouritePhotoAction }
 )(RenderGallery);

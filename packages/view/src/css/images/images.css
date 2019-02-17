@@ -90,7 +90,8 @@
   position: relative;
   font-size: 17px;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.6);
+  background-color: #000000a6;
+  color: #fffffe;
 }
 
 .hovereffect a.info {
@@ -100,6 +101,7 @@
   border: 1px solid #fff;
   margin: 50px 0 0 0;
   background-color: transparent;
+  background-color: #000000a6;
 }
 
 .hovereffect a.info:hover {
@@ -126,4 +128,7 @@
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
+}
+.yellowColorStar {
+  color: yellow;
 }

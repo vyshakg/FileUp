@@ -4,9 +4,9 @@ import Dropzone from "react-dropzone";
 import { withRouter } from "react-router";
 import { CustomButton, UploadContainer } from "../../css/upload/Upload";
 import DisplayFileList from "./DisplayFileList";
-import onSubmitHandle from "./SubmitHandle";
+import SubmitHandle from "./SubmitHandle";
 
-function UploadPage() {
+function UploadHandle({ history }) {
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
 
@@ -43,7 +43,7 @@ function UploadPage() {
 
       <CustomButton
         type="primary"
-        onClick={() => onSubmitHandle(fileList, setFileList, uploading, setUploading)}
+        onClick={() => SubmitHandle(fileList, setFileList, uploading, setUploading, history)}
         disabled={fileList.length === 0}
         loading={uploading}
       >
@@ -65,4 +65,4 @@ function UploadPage() {
   );
 }
 
-export default withRouter(UploadPage);
+export default withRouter(UploadHandle);
