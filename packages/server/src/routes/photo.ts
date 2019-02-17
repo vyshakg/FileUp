@@ -2,7 +2,7 @@
 import express from "express";
 import { getConnection, getRepository } from "typeorm";
 import { Photo } from "../entity/photo";
-import cloudinary from "../utils/cloudinarySetup";
+import { default as cloudinary } from "../utils/cloudinarySetup";
 import isAuthenticated from "./middleware/isAuthenticated";
 
 const photoRoute = express.Router();
