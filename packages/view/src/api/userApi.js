@@ -5,6 +5,9 @@ export const user = {
     return Axios.post("/api/login", credentials).then(res => res.data);
     // .catch(err => err.response.data);
   },
+  isAuth: function() {
+    return Axios.get("/api/isauth");
+  },
   register: function(credentials) {
     return Axios.post("/api/register", credentials).then(res => res.data);
     // .catch(err => err.response.data);

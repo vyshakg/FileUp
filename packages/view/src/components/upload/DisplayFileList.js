@@ -23,7 +23,7 @@ function DisplayFileList({ fileList, setFileList }) {
               className="onHover-effect"
               style={{ float: "right" }}
             />
-            <img src={URL.createObjectURL(file)} alt={file.name} style={{ width: "160px" }} />
+            <img src={URL.createObjectURL(file)} alt={file.name} style={{ width: "120px" }} />
 
             <h4>{file.name}</h4>
             <span>{formatFileSize(file.size)}</span>

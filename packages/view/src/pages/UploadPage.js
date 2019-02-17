@@ -1,6 +1,6 @@
 import { Icon } from "antd";
 import React from "react";
-import ServerUploadHandle from "../components/upload/ServerUploadHandle";
+import ServerUploadHandle from "../components/upload/UploadHandle";
 import { MainContainer } from "../css/common/common";
 import { Header, UploadWrapper } from "../css/upload/Upload";
 
