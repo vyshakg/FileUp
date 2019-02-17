@@ -80,4 +80,26 @@ photoRoute.post("/api/delete", isAuthenticated, async (req, res) => {
   }
 });
 
+photoRoute.post("/api/favourite", isAuthenticated, async (req, res) => {
+  try {
+    const id = req.body.id;
+
+    const photo = await Photo.findOne({ id });
+    if (photo) {
+      await Photo.update({ id }, { favouritePhoto: true });
+      return res.json({
+        ok: true,
+        id
+      });
+    } else {
+      return res.status(400).json({
+        ok: false
+      });
+    }
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ ok: false });
+  }
+});
+
 export default photoRoute;
