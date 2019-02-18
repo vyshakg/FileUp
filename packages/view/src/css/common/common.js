@@ -16,6 +16,7 @@ export const AppHeader = styled.div`
   background: #447efd;
   height: 64px;
   line-height: 64px;
-  padding: 0px 6rem;
+  padding: 0px 8rem;
   display: inline-flex;
+  background: ${props => props.color};
 `;
