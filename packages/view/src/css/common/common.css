@@ -27,9 +27,9 @@
 .header-navlink-h2 {
   font-family: "Noto Sans", sans-serif;
   color: white;
-  font-size: large;
+  font-size: medium;
   margin-bottom: 0;
-  padding: 0 1rem;
+  padding: 0 0.65rem;
   text-decoration: none !important;
 }
 .header-navlink {
@@ -43,4 +43,13 @@
 .removeActiceclass:focus-within {
   text-decoration: none;
 }
-/* ----------------------------------------------------------------------------------------------------------------------------------- */
+
+.sidebarfonts {
+  color: white;
+  margin-right: 0 !important;
+  font-size: large;
+}
+
+.Content-height {
+  height: calc(100vh - 79px);
+}
