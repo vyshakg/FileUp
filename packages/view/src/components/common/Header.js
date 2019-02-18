@@ -28,16 +28,16 @@ function Header({ isLoggedIn, history, logout }) {
           <h2 className="header-navlink-h2">Images</h2>
         </NavLink>
         <NavLink to="/upgrade">
-          <h2 className="header-navlink-h2">upgrade</h2>
+          <h2 className="header-navlink-h2">Upgrade</h2>
         </NavLink>
         {isLoggedIn ? (
           // eslint-disable-next-line
           <a onClick={() => signout(history, logout)}>
-            <h2 className="header-navlink-h2">signout</h2>
+            <h2 className="header-navlink-h2">Signout</h2>
           </a>
         ) : (
           <NavLink to="/login">
-            <h2 className="header-navlink-h2">signin</h2>
+            <h2 className="header-navlink-h2">Signin</h2>
           </NavLink>
         )}
       </div>

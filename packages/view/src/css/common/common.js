@@ -19,3 +19,9 @@ export const AppHeader = styled.div`
   padding: 0px 6rem;
   display: inline-flex;
 `;
+// ${media.tablet`.navlink-header{
+//   display : none
+// }`}
+// @media (max-width: 1024px) {
+//   padding: 0px 3rem;
+// }
