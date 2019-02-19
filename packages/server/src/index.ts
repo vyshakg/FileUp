@@ -7,6 +7,7 @@ import "reflect-metadata";
 import { createTypeormConn } from "./createTypeormConn";
 import redisSession from "./redisSession";
 import { default as photoRoute, default as userRoute } from "./routes";
+import upgradeRoute from "./routes/upgrade";
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ const startServer = async () => {
   app.use(redisSession());
   app.use(userRoute);
   app.use(photoRoute);
+  app.use(upgradeRoute);
 
   app.listen(PORT, () => {
     console.log(chalk.bgBlueBright(`server started at  http://localhost:${PORT}`));
