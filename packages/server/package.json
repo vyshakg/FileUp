@@ -23,7 +23,7 @@
     "lodash": "^4.17.11",
     "pg": "^7.8.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.11"
+    "typeorm": "^0.2.13"
   },
   "engines": {
     "node": "10.15.0"
@@ -35,22 +35,22 @@
     "@types/cors": "^2.8.4",
     "@types/dotenv": "^6.1.0",
     "@types/express": "^4.16.0",
-    "@types/express-session": "^1.15.11",
+    "@types/express-session": "^1.15.12",
     "@types/faker": "^4.1.5",
     "@types/ioredis": "^4.0.6",
-    "@types/jest": "^24.0.0",
+    "@types/jest": "^24.0.6",
     "@types/joi": "^14.3.1",
-    "@types/lodash": "^4.14.120",
+    "@types/lodash": "^4.14.121",
     "@types/node": "^10.12.18",
     "@types/supertest": "^2.0.7",
     "cross-env": "^5.2.0",
     "faker": "^4.1.0",
     "jest": "^24.1.0",
     "supertest": "^3.4.2",
-    "ts-jest": "^23.10.5",
-    "ts-node": "^7.0.1",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^8.0.2",
     "ts-node-dev": "^1.0.0-pre.32",
     "tslint-config-prettier": "^1.17.0",
-    "typescript": "^3.3.1"
+    "typescript": "^3.3.3"
   }
 }
