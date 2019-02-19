@@ -6,7 +6,7 @@ import Header from "./components/common/Header";
 import Sidebar from "./components/common/Sidebar";
 import { ImagesPage, LoginPage, SignUpPage, UploadPage } from "./pages";
 const { Content } = Layout;
-
+// hwey i ak here in stripe
 function App() {
   return (
     <Layout>
