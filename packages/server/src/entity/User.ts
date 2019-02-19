@@ -15,6 +15,12 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  @Column({ default: "free-tier" })
+  type: string;
+
+  @Column("text", { nullable: true })
+  stripeId: string;
+
   @OneToMany(type => Photo, photo => photo.uploadedUser)
   photos: Photo[];
 }

@@ -13,7 +13,7 @@ function App() {
       <Sidebar />
       <Layout>
         <Header />
-        <Content className="Content-height">
+        <Content>
           <Switch>
             <Route exact path="/upload" component={UploadPage} />
             <Route exact path="/login" component={LoginPage} />
