@@ -4,7 +4,7 @@ A fileUp is a website where a users can upload a image and view the images.
 
 ## TODO - road map
 
-- [ ] use media query
+- [x] use media query
 
 * - [x] added media query for the upload page.
 * - [x] media query for image page and layout.
