@@ -5,6 +5,7 @@ import CustomFooter from "./components/common/Footer";
 import Header from "./components/common/Header";
 import Sidebar from "./components/common/Sidebar";
 import { ImagesPage, LoginPage, SignUpPage, UploadPage } from "./pages";
+import UpgradePage from "./pages/UpgradePage";
 const { Content } = Layout;
 
 function App() {
@@ -13,12 +14,13 @@ function App() {
       <Sidebar />
       <Layout>
         <Header />
-        <Content className="Content-height">
+        <Content>
           <Switch>
             <Route exact path="/upload" component={UploadPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={SignUpPage} />
             <Route exact path="/images" component={ImagesPage} />
+            <Route exact path="/upgrade" component={UpgradePage} />
           </Switch>
         </Content>
         <CustomFooter />

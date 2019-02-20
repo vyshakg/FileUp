@@ -15,8 +15,7 @@ async function signout(history, logout) {
 function Sidebar({ isLoggedIn, history, logout, location }) {
   const [collapsed, setCollapsed] = useState(true);
   const [key, setKey] = useState(0);
-  console.log("TCL: Sidebar -> key", key);
-  console.log("TCL: Sidebar -> location.pathname", location.pathname);
+
   useEffect(() => {
     switch (location.pathname) {
       case "/upload":
