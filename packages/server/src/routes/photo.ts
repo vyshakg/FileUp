@@ -43,6 +43,7 @@ photoRoute.get("/api/allpics", isAuthenticated, async (req, res) => {
       .select(["photo.id", "photo.originalFilename", "photo.photoId", "photo.size", "photo.favouritePhoto"])
       .leftJoin("photo.uploadedUser", "uploadedUser")
       .where("uploadedUser.id = :id", { id: req.session!.userId })
+
       .getMany();
 
     return res.json(photos);
