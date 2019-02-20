@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Lightbox from "react-images";
-import RenderGallery from "./imagedisplay";
+import RenderGallery from "./RenderGallery";
 
 function ImageHandle({ images }) {
   const [currentImage, setCurrentImage] = useState(0);

@@ -19,15 +19,15 @@ function noOfFavouritePhoto(images) {
 }
 function ImageHeader({ user, noOfImages, images }) {
   return (
-    <>
-      <div className="imageHolder">
+    <div className="image-wrapper">
+      <div style={{ textAlign: "center" }}>
         <img
           src="https://res.cloudinary.com/imagecloudinaryapi/image/upload/w_150,h_150,c_thumb/FileUp/jenny"
           alt="profilepic"
           className="profilepic"
         />
       </div>
-      <section className="image-dashbord-wrapper">
+      <section style={{ textAlign: "center" }}>
         <h1 style={{ fontSize: "2.5rem" }}>{user.username}</h1>
         <div className="images-dashboard ">
           <div className="dashboard-card backgroundCrimson">
@@ -50,7 +50,7 @@ function ImageHeader({ user, noOfImages, images }) {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 function mapStateToProps(state) {

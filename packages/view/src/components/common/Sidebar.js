@@ -41,6 +41,7 @@ function Sidebar({ isLoggedIn, history, logout, location }) {
       collapsedWidth="0"
       collapsible={true}
       width={180}
+      style={{ zIndex: 1 }}
       collapsed={collapsed}
       onCollapse={(_, type) => {
         if (type === "clickTrigger") setCollapsed(!collapsed);

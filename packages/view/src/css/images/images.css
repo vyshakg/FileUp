@@ -5,7 +5,7 @@
 .backgroundCrimson {
   background: crimson;
 }
-.image-layout {
+/* .image-layout {
   display: grid;
   margin: 0 21rem;
   grid-template-rows: 12rem auto;
@@ -13,19 +13,18 @@
 .imageheader {
   display: flex;
   margin: 1rem 21rem 0 21rem;
-}
+} */
 .profilepic {
   border-radius: 50%;
   box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1),
     0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
 }
-.imageHolder {
-  margin-right: 3rem;
+.image-wrapper {
+  display: grid;
+  justify-content: center;
+  margin: 2rem 0;
 }
 
-.image-dashbord-wrapper {
-  width: 100%;
-}
 .images-dashboard {
   display: flex;
   text-align: center;
@@ -38,13 +37,14 @@
     0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
   width: 5rem;
   height: 3rem;
-  margin-right: 30px;
+  margin: 0 1rem;
 }
 
 /* Each image css */
 .images-wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* hover effect */
@@ -131,4 +131,9 @@
 }
 .yellowColorStar {
   color: yellow;
+}
+.pagination {
+  margin: auto;
+  text-align: center;
+  padding: 3rem;
 }

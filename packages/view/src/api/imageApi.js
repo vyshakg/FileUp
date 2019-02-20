@@ -13,7 +13,7 @@ export const images = {
     return Axios.post(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`, formData);
   },
   load: function() {
-    return Axios.get("/api/allpics").then(res => {
+    return Axios.get(`/api/allpics`).then(res => {
       return res.data;
     });
   },
