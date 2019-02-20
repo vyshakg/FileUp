@@ -47,9 +47,15 @@
 .sidebarfonts {
   color: white;
   margin-right: 0 !important;
-  font-size: large;
+  font-size: x-large !important;
 }
 
 .Content-height {
   height: calc(100vh - 79px);
+}
+
+@media (max-width: 430px) {
+  .sidebar-mediaquerys {
+    width: 40px;
+  }
 }

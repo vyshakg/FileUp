@@ -37,10 +37,10 @@ function Sidebar({ isLoggedIn, history, logout, location }) {
 
   return (
     <Sider
-      breakpoint="lg"
+      breakpoint="xs"
       collapsedWidth="0"
       collapsible={true}
-      width={180}
+      width={160}
       style={{ zIndex: 1 }}
       collapsed={collapsed}
       onCollapse={(_, type) => {
@@ -49,8 +49,8 @@ function Sidebar({ isLoggedIn, history, logout, location }) {
     >
       <AppHeader color={"none"} />
 
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={[`${key}`]}>
-        <Menu.Item key={1}>
+      <Menu theme="dark" mode="inline" selectedKeys={[`${key}`]}>
+        <Menu.Item key={1} style={{ marginBottom: "2rem" }}>
           <NavLink exact to="/upload">
             <div>
               <Icon type="upload" className="sidebarfonts" />
@@ -58,7 +58,7 @@ function Sidebar({ isLoggedIn, history, logout, location }) {
             </div>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key={2}>
+        <Menu.Item key={2} style={{ marginBottom: "2rem" }}>
           <NavLink to="/images">
             <div>
               <Icon type="picture" theme="filled" className="sidebarfonts" />
@@ -66,7 +66,7 @@ function Sidebar({ isLoggedIn, history, logout, location }) {
             </div>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key={3}>
+        <Menu.Item key={3} style={{ marginBottom: "2rem" }}>
           <NavLink to="/upgrade">
             <div>
               <Icon type="cloud" theme="filled" className="sidebarfonts" />
@@ -74,7 +74,7 @@ function Sidebar({ isLoggedIn, history, logout, location }) {
             </div>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key={4}>
+        <Menu.Item key={4} style={{ marginBottom: "2rem" }}>
           {isLoggedIn ? (
             // eslint-disable-next-line
             <a onClick={() => signout(history, logout)}>

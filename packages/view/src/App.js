@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import CustomFooter from "./components/common/Footer";
 import Header from "./components/common/Header";
+// import SiderDemo from "./components/common/sidebar2";
 import Sidebar from "./components/common/Sidebar";
 import { ImagesPage, LoginPage, SignUpPage, UploadPage } from "./pages";
 import UpgradePage from "./pages/UpgradePage";
@@ -10,7 +11,7 @@ const { Content } = Layout;
 
 function App() {
   return (
-    <Layout>
+    <Layout style={{ minHeight: "100vh" }}>
       <Sidebar />
       <Layout>
         <Header />
