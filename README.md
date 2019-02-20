@@ -6,8 +6,9 @@ A fileUp is a website where a users can upload a image and view the images.
 
 - [ ] use media query
 
-* - [x] added media query for the upload page
-* - [ ] need to add media query for the App header using maybe (custom)
+* - [x] added media query for the upload page.
+* - [x] media query for image page and layout.
+* - [x] side bar is created.
 
 - [x] add the user login system.
 - [ ] guest system to walk through the app.
@@ -19,9 +20,13 @@ A fileUp is a website where a users can upload a image and view the images.
 - [ ] add a stripe for to take a money.
 - [x] testing integration is done and tesing of login is complete.
 - [x] add all the data sent back from the frontend to database with correct insertion of one to many relationship.
-- [ ] handle errors in the login and signup
-- [x] if user not logged in have options in header as signin
-- [x] persist the user logged in information in the redux
-- [ ] client-side verification of the signout and signin
-- [ ] add a pagination to the images page
-- [x] transition to react hooks
+- [ ] handle errors in the login and signup.
+- [x] if user not logged in have options in header as signin.
+- [x] persist the user logged in information in the redux.
+- [x] client-side verification of the signout and signin.
+- [x] add a pagination to the images page.
+- [x] transition to react hooks.
+- [ ] stying of the onhover images.
+- [ ] testing.
+- [ ] homepaeg design ("/") and upgrade page design.
+- [ ] handling and understanding stripe
