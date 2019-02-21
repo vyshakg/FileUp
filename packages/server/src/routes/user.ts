@@ -24,7 +24,6 @@ userRoute.post("/api/register", async (req, res) => {
         password: hashPassword
       });
       newUser = await newUser.save();
-      console.log(newUser.id);
       req.session!.userId = newUser.id;
 
       return res.status(200).json({

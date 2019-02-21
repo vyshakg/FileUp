@@ -4,6 +4,7 @@ import { Connection } from "typeorm";
 import { User } from "../../entity/User";
 import { app } from "../../index";
 import { testConnection } from "../../test/testDatabaseConnection";
+
 let conn: Connection;
 
 beforeAll(async () => {
@@ -12,6 +13,11 @@ beforeAll(async () => {
 afterAll(async () => {
   await conn.close();
 });
+
+/*
+ * @author : vyshak G
+ * @Test : Check for Respond with 200 ok
+ */
 
 describe("Register POST", () => {
   it("Respond with 200 created.", done => {
@@ -31,7 +37,13 @@ describe("Register POST", () => {
         done();
       });
   });
-  it("Ckecking the response data.", done => {
+
+  /*
+   * @author : vyshak G
+   * @Test : Register with proper Inputs.
+   */
+
+  it("Register with proper Inputs.", done => {
     const user = {
       email: faker.internet.email(),
       password: faker.internet.password(),
@@ -52,9 +64,15 @@ describe("Register POST", () => {
         done();
       });
   });
-  it("Ckecking DataBase.", done => {
+
+  /*
+   * @author : vyshak G
+   * @Test : Database insertion check for the register endpoint.
+   */
+
+  it("Database insertion check for the register endpoint.", done => {
     const user = {
-      email: faker.internet.email(),
+      email: "jondoe@gmail.com",
       password: faker.internet.password(),
       username: faker.name.findName()
     };
@@ -75,7 +93,13 @@ describe("Register POST", () => {
         });
       });
   });
-  it("Wrong Email [1]", done => {
+
+  /*
+   * @author : vyshak G
+   * @Test : Register with wrong email.
+   */
+
+  it("Wrong Email : abc.com", done => {
     const user = {
       email: "abc.com",
       password: faker.internet.password(),
@@ -94,7 +118,8 @@ describe("Register POST", () => {
         done();
       });
   });
-  it("Wrong Email [2]", done => {
+
+  it("Wrong Email : abcgmail", done => {
     const user = {
       email: "abcgmail",
       password: faker.internet.password(),
@@ -113,7 +138,13 @@ describe("Register POST", () => {
         done();
       });
   });
-  it("Wrong Username", done => {
+
+  /*
+   * @author : vyshak G
+   * @Test : Register with wrong username.
+   */
+
+  it("Wrong Username : ofLength(30+) ", done => {
     const user = {
       email: faker.internet.email(),
       password: faker.internet.password(),
@@ -132,10 +163,38 @@ describe("Register POST", () => {
         done();
       });
   });
-  it("Expected Status Code 401", done => {
+
+  /*
+   * @author : vyshak G
+   * @Test : Register with wrong password.
+   */
+
+  it("Wrong password : empty string", done => {
     const user = {
       email: faker.internet.email(),
       password: "",
+      username: faker.name.findName()
+    };
+    request(app)
+      .post("/api/register")
+      .type("form")
+      .set("Accept", "application/json")
+      .send(user)
+      .expect(401)
+      .end((err, res) => {
+        if (err) return done(err);
+        done();
+      });
+  });
+
+  /*
+   * @author : vyshak G
+   * @Test : Register with Same Email.
+   */
+  it("Register with Same Email.", done => {
+    const user = {
+      email: "jondoe@gmail.com",
+      password: faker.internet.password(),
       username: faker.name.findName()
     };
     request(app)
