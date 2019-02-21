@@ -127,3 +127,16 @@
 .login-signup-link-wrapper {
   padding-top: 115px;
 }
+
+@media (max-width: 1024px) {
+  .login-signup-link-wrapper {
+    padding-top: 75px;
+  }
+  .wrap-login {
+    width: 350px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 65px 45px 33px 45px;
+  }
+}

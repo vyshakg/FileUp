@@ -19,10 +19,13 @@ export const AppHeader = styled.div`
   padding: 0px 8rem;
   display: inline-flex;
   background: ${props => props.color};
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+  @media (max-width: 1024px) {
+    padding: 0px 5rem;
+  }
 `;
 // ${media.tablet`.navlink-header{
 //   display : none
 // }`}
-// @media (max-width: 1024px) {
-//   padding: 0px 3rem;
-// }
