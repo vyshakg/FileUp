@@ -42,7 +42,10 @@ function RenderGallery({ images, openLightbox, deletePhoto, favouritePhotoAction
         <div className="withNoimages">
           <h1 style={{ color: "#447efd" }}>No images Uploaded</h1>
           <h4 className="Custom-style-no-upload">
-            <Link to="/upload">upload</Link> new images
+            <Link exact to="/upload">
+              upload
+            </Link>{" "}
+            new images
           </h4>
         </div>
       </div>
