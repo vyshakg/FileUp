@@ -15,11 +15,17 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @Column({ default: "free-tier" })
-  type: string;
+  @Column({ default: "Basic" })
+  planType: string;
 
   @Column("text", { nullable: true })
-  stripeId: string;
+  CClast4: string | null;
+
+  @Column("text", { nullable: true })
+  cardType: string | null;
+
+  @Column("text", { nullable: true })
+  stripeId: string | null;
 
   @OneToMany(type => Photo, photo => photo.uploadedUser)
   photos: Photo[];

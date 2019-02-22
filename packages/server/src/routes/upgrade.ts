@@ -23,7 +23,7 @@ upgradeRoute.post(
         });
 
         user.stripeId = customer.id;
-        user.type = "upgraded-tier";
+        user.planType = "Pro";
         await user.save();
 
         return res.status(200).json({ ok: true });

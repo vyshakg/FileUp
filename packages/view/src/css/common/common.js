@@ -26,6 +26,9 @@ export const AppHeader = styled.div`
     padding: 0px 5rem;
   }
 `;
-// ${media.tablet`.navlink-header{
-//   display : none
-// }`}
+
+export const SideBarProfile = styled.div`
+  display: inline-flex;
+  height: 64px;
+  margin: 1rem 0 1rem 1rem;
+`;

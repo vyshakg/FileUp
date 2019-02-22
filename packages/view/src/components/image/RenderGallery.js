@@ -2,9 +2,9 @@
 import { Modal } from "antd";
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { deletePhoto, favouritePhotoAction } from "../../Redux-actions/Images";
 import SuccessNotification from "../notification/SuccessNotification";
-
 const confirm = Modal.confirm;
 
 function onClickFavourite(e, id, favouritePhotoAction) {
@@ -36,6 +36,18 @@ function onClickDelete(e, id, deletePhoto) {
 function RenderGallery({ images, openLightbox, deletePhoto, favouritePhotoAction }) {
   if (!images) return;
 
+  if (images.length === 0) {
+    return (
+      <div className="wrapper-withNoimages">
+        <div className="withNoimages">
+          <h1 style={{ color: "#447efd" }}>No images Uploaded</h1>
+          <h4 className="Custom-style-no-upload">
+            <Link to="/upload">upload</Link> new images
+          </h4>
+        </div>
+      </div>
+    );
+  }
   const gallery = images.map((obj, i) => {
     return (
       <div className="hovereffect" key={i}>

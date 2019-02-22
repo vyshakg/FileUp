@@ -138,3 +138,17 @@
   text-align: center;
   padding: 3rem;
 }
+
+.withNoimages {
+  padding: 2rem;
+  border: 2px dashed #447efd;
+  border-radius: 15px;
+  background: #62a1ff3d;
+  text-align: center;
+  width: 400px;
+  justify-content: center;
+}
+.wrapper-withNoimages {
+  display: flex;
+  justify-content: center;
+}

@@ -54,8 +54,22 @@
   height: calc(100vh - 79px);
 }
 
+.sidebarprofile {
+  width: 64px;
+  height: 64px;
+}
+.sidebarusername {
+  padding: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
 @media (max-width: 430px) {
   .sidebar-mediaquerys {
     width: 40px;
   }
+}
+.Custom-style-no-upload {
+  color: grey !important;
+  font-weight: 400;
+  font-size: initial;
 }
