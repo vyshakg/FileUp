@@ -4,6 +4,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { deletePhoto, favouritePhotoAction } from "../../Redux-actions/Images";
+import Loading from "../common/Loading";
 import SuccessNotification from "../notification/SuccessNotification";
 const confirm = Modal.confirm;
 
@@ -34,18 +35,15 @@ function onClickDelete(e, id, deletePhoto) {
   });
 }
 function RenderGallery({ images, openLightbox, deletePhoto, favouritePhotoAction }) {
-  if (!images) return;
+  if (!images) return <Loading />;
 
-  if (images.length === 0) {
+  if (images.length === 0 && !images) {
     return (
       <div className="wrapper-withNoimages">
         <div className="withNoimages">
           <h1 style={{ color: "#447efd" }}>No images Uploaded</h1>
           <h4 className="Custom-style-no-upload">
-            <Link exact to="/upload">
-              upload
-            </Link>{" "}
-            new images
+            <Link to="/upload">upload</Link> new images
           </h4>
         </div>
       </div>
@@ -58,7 +56,7 @@ function RenderGallery({ images, openLightbox, deletePhoto, favouritePhotoAction
         <div className="overlay" onClick={e => openLightbox(i, e)}>
           <h2>{obj.caption}</h2>
 
-          <p style={{ marginTop: "150px" }}>
+          <p>
             <a className="info" onClick={e => onClickDelete(e, obj.id, deletePhoto)} style={{ marginRight: "40px" }}>
               <span className="fa fa-trash" />
             </a>

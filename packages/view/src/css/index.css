@@ -4,3 +4,5 @@
 @import "./login/login.css";
 @import url("https://fonts.googleapis.com/css?family=Poppins:700");
 @import "./images/images.css";
+@import "./common/loading.css";
+@import "./upgrade/upgrade.css";

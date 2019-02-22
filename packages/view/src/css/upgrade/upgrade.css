@@ -1,0 +1,100 @@
+.upgrade-wrapper {
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: space-evenly;
+  margin-top: 4rem;
+}
+
+.basic-header {
+  padding: 0.5rem;
+  background: gray;
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+  text-align: center;
+  border-radius: 7px;
+}
+
+.pro-header {
+  padding: 0.5rem;
+  border-radius: 7px;
+  background: linear-gradient(to left, #ffcc66 8%, #ff6666 95%);
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+  text-align: center;
+}
+
+.upgrade-header {
+  color: white;
+  font-size: xx-large;
+}
+
+.border {
+  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1),
+    0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+  border-radius: 7px;
+  padding: 22px;
+  margin-bottom: 2rem;
+}
+.plan {
+  min-height: 500px;
+  padding: 2rem 10px 0 10px;
+  line-height: 3rem;
+}
+
+.premium-header {
+  padding: 0.5rem;
+  border-radius: 7px;
+
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+  text-align: center;
+  background: linear-gradient(to left, #99ccff 8%, #0066cc 99%);
+}
+
+.font-style-upgrade {
+  margin-right: 6px;
+  font-size: larger;
+}
+
+.top-right {
+  width: 30%;
+  padding-bottom: 1rem;
+  list-style: none;
+  line-height: 1;
+}
+
+.billed-annualy {
+  font-size: 11px;
+  opacity: 0.8;
+  color: #617379;
+  height: 12px;
+}
+
+.price {
+  width: 100%;
+  font-size: 35px;
+  letter-spacing: 0.7px;
+  margin: 0 auto;
+  font-weight: 500;
+  background-color: transparent;
+  padding: 5px 0;
+}
+.monthly {
+  display: block;
+  line-height: 45px;
+}
+.mo-txt {
+  opacity: 0.5;
+  font-size: 14px;
+  letter-spacing: 1.44px;
+  font-weight: 700;
+}
