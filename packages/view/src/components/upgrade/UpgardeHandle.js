@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
+import { UpgradeButton } from "../../css/upgrade/upgrade";
 import ErrorNotification from "../notification/ErrorNotification";
 import SuccessNotification from "../notification/SuccessNotification";
 
@@ -15,11 +16,21 @@ async function upgradeServer(tokenId) {
   }
 }
 
-function UpgardeHandle() {
+function UpgardeHandle({ amount, color, hoverColor }) {
   return (
-    <div style={{ marginLeft: "12rem" }}>
-      <StripeCheckout token={token => upgradeServer(token.id)} stripeKey={process.env.REACT_APP_STRIPE_PUB_KEY} />
-    </div>
+    <StripeCheckout
+      token={token => upgradeServer(token.id)}
+      stripeKey={process.env.REACT_APP_STRIPE_PUB_KEY}
+      name="File Up."
+      description="The better Cloud."
+      amount={amount}
+      currency="INR"
+      image={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUD_NAME}/image/upload/w_100,h_100/FileUp/cloud`}
+    >
+      <UpgradeButton color={color} hoverColor={hoverColor}>
+        Upgrade
+      </UpgradeButton>
+    </StripeCheckout>
   );
 }
 

@@ -53,7 +53,9 @@ function Sidebar({ isLoggedIn, history, logout, location, username }) {
           <SideBarProfile>
             <div>
               <img
-                src="https://res.cloudinary.com/imagecloudinaryapi/image/upload/w_150,h_150,c_thumb/FileUp/jenny"
+                src={`https://res.cloudinary.com/${
+                  process.env.REACT_APP_CLOUD_NAME
+                }/image/upload/w_150,h_150,c_thumb/FileUp/jenny`}
                 alt="profilepic"
                 className="profilepic sidebarprofile"
               />

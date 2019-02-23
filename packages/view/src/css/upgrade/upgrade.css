@@ -34,6 +34,7 @@
 .upgrade-header {
   color: white;
   font-size: xx-large;
+  margin: 0;
 }
 
 .border {
@@ -42,10 +43,12 @@
   border-radius: 7px;
   padding: 22px;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .plan {
-  min-height: 500px;
-  padding: 2rem 10px 0 10px;
+  padding: 2rem 10px 6rem 10px;
   line-height: 3rem;
 }
 
@@ -98,3 +101,21 @@
   letter-spacing: 1.44px;
   font-weight: 700;
 }
+
+/* .upgrade-premium {
+  padding: 0.5rem;
+  border-radius: 7px;
+  position: relative;
+  width: 300px;
+  text-align: center;
+  background: #0066cc;
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+}
+.upgrade-premium:hover {
+  background: #6dadec;
+} */

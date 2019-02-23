@@ -1,5 +1,7 @@
 import { Icon } from "antd";
 import React from "react";
+import UpgardeHandle from "../components/upgrade/UpgardeHandle";
+import { UpgradeButtonFree } from "../css/upgrade/upgrade";
 
 function UpgradePage() {
   return (
@@ -28,6 +30,7 @@ function UpgradePage() {
             limited access per day
           </h3>
         </div>
+        <UpgradeButtonFree> Free </UpgradeButtonFree>
       </div>
       <div className="border">
         <div className="pro-header">
@@ -52,6 +55,9 @@ function UpgradePage() {
             <Icon type="api" className="font-style-upgrade" />
             unlimited access per day
           </h3>
+        </div>
+        <div>
+          <UpgardeHandle amount={50000} color={"#ff6666"} hoverColor={"#ff6666b5"} />
         </div>
       </div>
       <div className="border">
@@ -81,6 +87,9 @@ function UpgradePage() {
             <Icon type="thunderbolt" className="font-style-upgrade" />
             Faster access
           </h3>
+        </div>
+        <div>
+          <UpgardeHandle amount={150000} color={"#0066cc"} hoverColor={"#6dadec"} />
         </div>
       </div>
     </div>
