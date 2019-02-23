@@ -31,13 +31,10 @@ userRoute.post("/api/register", async (req, res) => {
         id: newUser.id,
         username: newUser.username,
         email: newUser.email,
-        expDate: newUser.expDate,
-        cclast4: newUser.cclast4,
-        cardType: newUser.cardType,
         planType: newUser.planType
       });
     } else {
-      return res.status(401).json({ path: "email", message: "Email already exists" });
+      return res.status(401).json([{ path: "email", message: "Email already exists" }]);
     }
   } catch (e) {
     // console.log(chalk.red(e));
@@ -59,14 +56,11 @@ userRoute.post("/api/login", async (req, res) => {
           id: user.id,
           email: user.email,
           username: user.username,
-          expDate: user.expDate,
-          cclast4: user.cclast4,
-          cardType: user.cardType,
           planType: user.planType
         });
       }
     }
-    return res.status(401).json({ message: "Invalid Credientials" });
+    return res.status(401).json([{ message: "Invalid Credientials" }]);
   } catch (e) {
     console.log(chalk.red(e));
     return res.status(401).json(formatError(e));

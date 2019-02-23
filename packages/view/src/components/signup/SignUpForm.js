@@ -1,4 +1,4 @@
-import { Form, Icon, Input } from "antd";
+import { Alert, Form, Icon, Input } from "antd";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -9,16 +9,39 @@ export class SignUpForm extends Component {
       username: "",
       email: "",
       password: ""
-    }
+    },
+    errors: []
+  };
+  onClose = () => {
+    this.setState({ errors: [] });
   };
   handleChange = ({ target }) => {
-    this.setState({ data: { ...this.state.data, [target.name]: target.value } });
+    this.setState({ data: { ...this.state.data, [target.name]: target.value }, errors: [] });
   };
   onSubmit = () => {
-    this.props.register(this.state.data).then(() => this.props.history.push("/upload"));
+    this.props
+      .register(this.state.data)
+      .then(() => this.props.history.push("/upload"))
+      .catch(err => {
+        this.setState({ errors: err.response.data });
+      });
   };
   render() {
-    const { data } = this.state;
+    const { data, errors } = this.state;
+    if (!(Object.keys(errors).length === 0)) {
+      return (
+        <Alert
+          message="Input Error"
+          description={errors.map((err, i) => (
+            <li key={i}>{err.message}</li>
+          ))}
+          type="error"
+          closable
+          onClose={this.onClose}
+          showIcon
+        />
+      );
+    }
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
