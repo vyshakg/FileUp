@@ -26,7 +26,8 @@ A fileUp is a website where a users can upload a image and view the images.
 - [x] client-side verification of the signout and signin.
 - [x] add a pagination to the images page.
 - [x] transition to react hooks.
-- [ ] stying of the onhover images.
+- [x] stying of the onhover images.
 - [ ] testing.
-- [ ] homepaeg design ("/") and upgrade page design.
+- [ ] homepaeg design ("/")
+- [x] upgrade page design.
 - [ ] handling and understanding stripe
