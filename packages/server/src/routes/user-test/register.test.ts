@@ -2,7 +2,8 @@ import faker from "faker";
 import request from "supertest";
 import { Connection } from "typeorm";
 import { User } from "../../entity/User";
-import { app } from "../../index";
+import { redis } from "../../redisSession";
+import { app } from "../../startServer";
 import { testConnection } from "../../test/testDatabaseConnection";
 
 let conn: Connection;
@@ -10,8 +11,11 @@ let conn: Connection;
 beforeAll(async () => {
   conn = await testConnection();
 });
-afterAll(async () => {
+afterAll(async done => {
   await conn.close();
+  await redis.disconnect();
+
+  done();
 });
 
 /*
@@ -20,7 +24,7 @@ afterAll(async () => {
  */
 
 describe("Register POST", () => {
-  it("Respond with 200 created.", done => {
+  it("Respond with 200 created.", async done => {
     const user = {
       email: faker.internet.email(),
       password: faker.internet.password(),
@@ -32,10 +36,7 @@ describe("Register POST", () => {
       .set("Accept", "application/json")
       .send(user)
       .expect(200)
-      .end((err, res) => {
-        if (err) return done(err);
-        done();
-      });
+      .end(() => done());
   });
 
   /*
@@ -43,7 +44,7 @@ describe("Register POST", () => {
    * @Test : Register with proper Inputs.
    */
 
-  it("Register with proper Inputs.", done => {
+  it("Register with proper Inputs.", async done => {
     const user = {
       email: faker.internet.email(),
       password: faker.internet.password(),
@@ -70,7 +71,7 @@ describe("Register POST", () => {
    * @Test : Database insertion check for the register endpoint.
    */
 
-  it("Database insertion check for the register endpoint.", done => {
+  it("Database insertion check for the register endpoint.", async done => {
     const user = {
       email: "jondoe@gmail.com",
       password: faker.internet.password(),
@@ -99,7 +100,7 @@ describe("Register POST", () => {
    * @Test : Register with wrong email.
    */
 
-  it("Wrong Email : abc.com", done => {
+  it("Wrong Email : abc.com", async done => {
     const user = {
       email: "abc.com",
       password: faker.internet.password(),
@@ -119,7 +120,7 @@ describe("Register POST", () => {
       });
   });
 
-  it("Wrong Email : abcgmail", done => {
+  it("Wrong Email : abcgmail", async done => {
     const user = {
       email: "abcgmail",
       password: faker.internet.password(),
@@ -144,7 +145,7 @@ describe("Register POST", () => {
    * @Test : Register with wrong username.
    */
 
-  it("Wrong Username : ofLength(30+) ", done => {
+  it("Wrong Username : ofLength(30+) ", async done => {
     const user = {
       email: faker.internet.email(),
       password: faker.internet.password(),
@@ -169,7 +170,7 @@ describe("Register POST", () => {
    * @Test : Register with wrong password.
    */
 
-  it("Wrong password : empty string", done => {
+  it("Wrong password : empty string", async done => {
     const user = {
       email: faker.internet.email(),
       password: "",
@@ -191,7 +192,7 @@ describe("Register POST", () => {
    * @author : vyshak G
    * @Test : Register with Same Email.
    */
-  it("Register with Same Email.", done => {
+  it("Register with Same Email.", async done => {
     const user = {
       email: "jondoe@gmail.com",
       password: faker.internet.password(),

@@ -2,7 +2,7 @@ import connectRedis from "connect-redis";
 import session from "express-session";
 import Redis from "ioredis";
 
-const redis = new Redis();
+export const redis = new Redis();
 export default () => {
   const RedisStore = connectRedis(session);
 
