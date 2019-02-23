@@ -10,6 +10,7 @@ export const UpgradeButton = styled.button`
   font-weight: bold;
   border: 0;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   outline: none;
   background: ${props => props.color};
   &:hover {

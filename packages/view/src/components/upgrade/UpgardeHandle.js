@@ -1,26 +1,30 @@
-import Axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { UpgradeButton } from "../../css/upgrade/upgrade";
+import { subscribe } from "../../Redux-actions/User";
 import ErrorNotification from "../notification/ErrorNotification";
 import SuccessNotification from "../notification/SuccessNotification";
 
-async function upgradeServer(tokenId) {
-  try {
-    const response = await Axios.post("/api/upgrade", { tokenId: tokenId });
-    if (response) {
+function upgradeServer(token, amount, subscribe) {
+  let plan = null;
+  if (amount === 50000) plan = "Pro";
+  if (amount === 150000) plan = "Premium";
+
+  const data = { tokenId: token.id, plan };
+  subscribe(data)
+    .then(() => {
       SuccessNotification({ message: "Successfuly upgraded your account" });
-    }
-  } catch (err) {
-    ErrorNotification({ message: "Payment didn't go through" });
-  }
+    })
+    .catch(() => {
+      ErrorNotification({ message: "Payment didn't go through" });
+    });
 }
 
-function UpgardeHandle({ amount, color, hoverColor, email }) {
+function UpgardeHandle({ amount, color, hoverColor, email, subscribe }) {
   return (
     <StripeCheckout
-      token={token => upgradeServer(token.id)}
+      token={token => upgradeServer(token, amount, subscribe)}
       stripeKey={process.env.REACT_APP_STRIPE_PUB_KEY}
       name="File Up."
       description="The better Cloud."
@@ -38,4 +42,7 @@ function UpgardeHandle({ amount, color, hoverColor, email }) {
 function mapStateToPrps(state) {
   return { email: state.User.email };
 }
-export default connect(mapStateToPrps)(UpgardeHandle);
+export default connect(
+  mapStateToPrps,
+  { subscribe }
+)(UpgardeHandle);

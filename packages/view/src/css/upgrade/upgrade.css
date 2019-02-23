@@ -8,7 +8,7 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: space-evenly;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .basic-header {
@@ -102,20 +102,8 @@
   font-weight: 700;
 }
 
-/* .upgrade-premium {
-  padding: 0.5rem;
-  border-radius: 7px;
-  position: relative;
-  width: 300px;
-  text-align: center;
-  background: #0066cc;
-  color: white;
-  font-size: larger;
-  font-weight: bold;
-  border: 0;
-  cursor: pointer;
-  outline: none;
+.upgarder-header {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
-.upgrade-premium:hover {
-  background: #6dadec;
-} */

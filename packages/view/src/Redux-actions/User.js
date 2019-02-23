@@ -1,5 +1,5 @@
 import api from "../api";
-import { userLoggedIn, userLoggedOut, userSignUp } from "../Redux-reducers/User";
+import { userLoggedIn, userLoggedOut, userSignUp, userSubscribed } from "../Redux-reducers/User";
 
 export const login = credentials => dispatch => {
   return api.user.login(credentials).then(res => {
@@ -16,5 +16,17 @@ export const register = data => dispatch => {
 export const logout = () => dispatch => {
   return api.user.logout().then(res => {
     dispatch(userLoggedOut());
+  });
+};
+
+export const subscribe = data => dispatch => {
+  return api.subscribe.upgrade(data).then(res => {
+    dispatch(userSubscribed(res));
+  });
+};
+
+export const unSubscribe = () => dispatch => {
+  return api.subscribe.cancelUpgarde().then(res => {
+    dispatch(userSubscribed(res));
   });
 };
