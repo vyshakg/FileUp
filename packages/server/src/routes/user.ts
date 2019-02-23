@@ -30,7 +30,11 @@ userRoute.post("/api/register", async (req, res) => {
         ok: true,
         id: newUser.id,
         username: newUser.username,
-        email: newUser.email
+        email: newUser.email,
+        expDate: newUser.expDate,
+        cclast4: newUser.cclast4,
+        cardType: newUser.cardType,
+        planType: newUser.planType
       });
     } else {
       return res.status(401).json({ path: "email", message: "Email already exists" });
@@ -54,7 +58,11 @@ userRoute.post("/api/login", async (req, res) => {
           ok: true,
           id: user.id,
           email: user.email,
-          username: user.username
+          username: user.username,
+          expDate: user.expDate,
+          cclast4: user.cclast4,
+          cardType: user.cardType,
+          planType: user.planType
         });
       }
     }
