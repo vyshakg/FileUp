@@ -1,0 +1,52 @@
+.landing-title {
+  color: white;
+  font-size: -webkit-xxx-large;
+  font-family: "Noto Sans", sans-serif;
+}
+.landingpage-buttons {
+  border: 3px solid #004bc2;
+  padding: 1rem 3rem;
+  border-radius: 2rem;
+  margin-top: 2rem;
+  font-size: 18px;
+  color: #004bc2;
+  font-weight: 700;
+  background-color: #ffffff;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1),
+    0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.landingpage-buttons:hover {
+  color: #ffffff;
+  background: #09256187;
+  border: 3px solid #004bc2;
+}
+.landingpage-buttons:focus {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .img-landing {
+    width: 220px;
+  }
+  .landing-title {
+    font-size: xx-large;
+  }
+  .landingpage-buttons {
+    padding: 1rem 2rem;
+  }
+}
+.img-landing {
+  width: 290px;
+}
+@media (max-width: 1024px) {
+  .img-landing {
+    width: 200px;
+  }
+  .landing-title {
+    font-size: xx-large;
+  }
+  .landingpage-buttons {
+    padding: 1rem 2rem;
+  }
+}

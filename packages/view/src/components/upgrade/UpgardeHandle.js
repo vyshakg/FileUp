@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { UpgradeButton } from "../../css/upgrade/upgrade";
+import logo from "../../images/cloud-logo1.png";
 import { subscribe } from "../../Redux-actions/User";
 import ErrorNotification from "../notification/ErrorNotification";
 import SuccessNotification from "../notification/SuccessNotification";
@@ -31,7 +32,7 @@ function UpgardeHandle({ amount, color, hoverColor, email, subscribe }) {
       amount={amount}
       currency="INR"
       email={email}
-      image={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUD_NAME}/image/upload/w_100,h_100/FileUp/cloud`}
+      image={logo}
     >
       <UpgradeButton color={color} hoverColor={hoverColor}>
         Upgrade

@@ -10,7 +10,7 @@ import LandingPage from "./pages/LandingPage";
 import UpgradePage from "./pages/UpgradePage";
 const { Content } = Layout;
 
-function App({ isLoggedIn }) {
+function App({ isLoggedIn, location }) {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sidebar />
@@ -18,15 +18,15 @@ function App({ isLoggedIn }) {
         <Header />
         <Content>
           <Switch>
-            <Route path="/" component={LandingPage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/signup" component={SignUpPage} />
+            <Route exact location={location} path="/" component={LandingPage} />
+            <Route exact location={location} path="/login" component={LoginPage} />
+            <Route exact location={location} path="/signup" component={SignUpPage} />
 
             {isLoggedIn ? (
               <>
-                <Route exact path="/upload" component={UploadPage} />
-                <Route exact path="/images" component={ImagesPage} />
-                <Route exact path="/upgrade" component={UpgradePage} />
+                <Route location={location} exact path="/upload" component={UploadPage} />
+                <Route location={location} exact path="/images" component={ImagesPage} />
+                <Route location={location} exact path="/upgrade" component={UpgradePage} />
               </>
             ) : (
               <Redirect to="/" />

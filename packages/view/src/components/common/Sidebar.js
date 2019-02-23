@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { NavLink, withRouter } from "react-router-dom";
 import { AppHeader, SideBarProfile } from "../../css/common/common";
+import logo from "../../images/jenny.jpg";
 import { logout } from "../../Redux-actions/User";
 import { persistor } from "../../Redux-store";
-
 const { Sider } = Layout;
 async function signout(history, logout) {
   await Promise.all([persistor.purge(), logout()]);
@@ -52,13 +52,7 @@ function Sidebar({ isLoggedIn, history, logout, location, username }) {
         <>
           <SideBarProfile>
             <div>
-              <img
-                src={`https://res.cloudinary.com/${
-                  process.env.REACT_APP_CLOUD_NAME
-                }/image/upload/w_150,h_150,c_thumb/FileUp/jenny`}
-                alt="profilepic"
-                className="profilepic sidebarprofile"
-              />
+              <img src={logo} alt="profilepic" className="profilepic sidebarprofile" />
             </div>
 
             <div className="sidebarusername">

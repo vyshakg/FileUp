@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import logo from "../../images/jenny.jpg";
 import formatFileSize from "../../utils/formatFileSize";
 function totalBytesUsed(images) {
   let totalSize = 0;
@@ -21,13 +22,7 @@ function ImageHeader({ user, noOfImages, images }) {
   return (
     <div className="image-wrapper">
       <div style={{ textAlign: "center" }}>
-        <img
-          src={`https://res.cloudinary.com/${
-            process.env.REACT_APP_CLOUD_NAME
-          }/image/upload/w_150,h_150,c_thumb/FileUp/jenny`}
-          alt="profilepic"
-          className="profilepic"
-        />
+        <img src={logo} style={{ width: "150px" }} alt="profilepic" className="profilepic" />
       </div>
       <section style={{ textAlign: "center" }}>
         <h1 style={{ fontSize: "2.5rem" }}>{user.username}</h1>
