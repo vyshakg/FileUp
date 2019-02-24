@@ -13,7 +13,6 @@ import { testDatabaseConnection } from "./test/testDatabaseConnection";
 dotenv.config();
 
 const port = process.env.PORT || 4000;
-
 export const startServer = async () => {
   const app = express();
 
@@ -48,7 +47,6 @@ export const startServer = async () => {
   app.use(upgradeRoute);
 
   const PORT = process.env.NODE_ENV === "test" ? 0 : port;
-
   const server = app.listen(PORT, () => {
     console.log(chalk.bgBlueBright(`server started at  http://localhost:${PORT}`));
   });

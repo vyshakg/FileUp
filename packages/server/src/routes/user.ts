@@ -63,10 +63,10 @@ userRoute.post("/api/login", async (req, res) => {
           planType: user.planType
         });
       } else {
-        return res.status(401).json([{ message: "Invalid Credientials" }]);
+        return res.status(401).json({ message: "Invalid Credientials" });
       }
     } else {
-      return res.status(401).json([{ message: "Invalid Credientials" }]);
+      return res.status(401).json({ message: "Invalid Credientials" });
     }
   } catch (e) {
     console.log(chalk.red(e));

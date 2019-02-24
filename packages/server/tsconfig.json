@@ -15,9 +15,6 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -28,5 +25,5 @@
     "rootDir": "src"
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts", "src/index.ts"]
+  "include": ["./src/**/*.tsx", "./src/**/*.ts", "src/test/setup.js"]
 }
