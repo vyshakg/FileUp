@@ -29,5 +29,5 @@ A fileUp is a website where a users can upload a image and view the images.
 - [x] upgrade page design.
 - [x] handling and understanding stripe
 - [ ] handle errors in the login and signup ---> after deployment.
-- [ ] testing.
-- [ ] homepaeg design ("/")
+- [x] testing.
+- [x] homepaeg design ("/")
