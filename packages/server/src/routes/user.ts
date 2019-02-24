@@ -45,12 +45,16 @@ userRoute.post("/api/register", async (req, res) => {
 userRoute.post("/api/login", async (req, res) => {
   try {
     const { email, password } = req.body;
+
     await Joi.validate({ email, password }, signIn, { abortEarly: false });
     const user = await User.findOne({ email });
+
     if (user) {
       const status: boolean = await compare(password, user.password);
+
       if (status) {
         req.session!.userId = user.id;
+
         return res.status(200).json({
           ok: true,
           id: user.id,
@@ -58,12 +62,15 @@ userRoute.post("/api/login", async (req, res) => {
           username: user.username,
           planType: user.planType
         });
+      } else {
+        return res.status(401).json([{ message: "Invalid Credientials" }]);
       }
+    } else {
+      return res.status(401).json([{ message: "Invalid Credientials" }]);
     }
-    return res.status(401).json([{ message: "Invalid Credientials" }]);
   } catch (e) {
     console.log(chalk.red(e));
-    return res.status(401).json(formatError(e));
+    return res.status(400).json(formatError(e));
   }
 });
 

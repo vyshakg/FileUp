@@ -1,40 +1,43 @@
 import request from "supertest";
 import { Connection } from "typeorm";
-import { app } from "../../index";
-import { testConnection } from "../../test/testDatabaseConnection";
+import { testDatabaseConnection } from "../testDatabaseConnection";
+
+const app = process.env.TEST_HOST as string;
 
 let conn: Connection;
-
 const user = {
   email: "jondoe@yahoo.com",
-  username: "jonDoe",
-  password: "JonDoe123"
+  password: "12345",
+  username: "jondoe"
 };
+beforeAll(async done => {
+  conn = await testDatabaseConnection();
 
-beforeAll(async () => {
-  conn = await testConnection(true);
   request(app)
     .post("/api/register")
     .type("form")
     .set("Accept", "application/json")
     .send(user)
-    .end();
-});
-afterAll(async () => {
-  await conn.close();
+    .end(() => done());
 });
 
+afterAll(async done => {
+  await conn.close();
+  done();
+});
+
+/*
+ * @author : vyshak G
+ * @Test : Check for Respond with 200 ok
+ */
+
 describe("Login POST", () => {
-  const loginData = {
-    email: user.email,
-    password: user.password
-  };
-  it("Respond with 200 ok.", done => {
+  it("Respond with 200 created.", async done => {
     request(app)
       .post("/api/login")
       .type("form")
       .set("Accept", "application/json")
-      .send(loginData)
+      .send({ email: user.email, password: user.password })
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);

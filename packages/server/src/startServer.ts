@@ -8,14 +8,15 @@ import { createTypeormConn } from "./createTypeormConn";
 import redisSession, { redis } from "./redisSession";
 import { default as photoRoute, default as userRoute } from "./routes";
 import upgradeRoute from "./routes/upgrade";
-import { testConnection } from "./test/testDatabaseConnection";
+import { testDatabaseConnection } from "./test/testDatabaseConnection";
 
 dotenv.config();
 
 const port = process.env.PORT || 4000;
-export const app = express();
 
 export const startServer = async () => {
+  const app = express();
+
   const CORSconfig = {
     credentials: true,
     origin:
@@ -31,7 +32,7 @@ export const startServer = async () => {
   }
 
   if (process.env.NODE_ENV === "test") {
-    await testConnection(true);
+    await testDatabaseConnection(true);
   } else {
     await createTypeormConn();
   }
@@ -52,5 +53,5 @@ export const startServer = async () => {
     console.log(chalk.bgBlueBright(`server started at  http://localhost:${PORT}`));
   });
 
-  return { app, server };
+  return server;
 };

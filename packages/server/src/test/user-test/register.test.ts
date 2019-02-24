@@ -2,19 +2,18 @@ import faker from "faker";
 import request from "supertest";
 import { Connection } from "typeorm";
 import { User } from "../../entity/User";
-import { redis } from "../../redisSession";
-import { app } from "../../startServer";
-import { testConnection } from "../../test/testDatabaseConnection";
+import { testDatabaseConnection } from "../testDatabaseConnection";
+
+const app = process.env.TEST_HOST as string;
 
 let conn: Connection;
 
 beforeAll(async () => {
-  conn = await testConnection();
+  conn = await testDatabaseConnection();
 });
+
 afterAll(async done => {
   await conn.close();
-  await redis.disconnect();
-
   done();
 });
 
