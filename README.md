@@ -27,7 +27,17 @@ A fileUp is a website where a users can upload a image and view the images.
 - [x] transition to react hooks.
 - [x] stying of the onhover images.
 - [x] upgrade page design.
-- [x] handling and understanding stripe
-- [ ] handle errors in the login and signup ---> after deployment.
+- [x] handling and understanding stripe.
 - [x] testing.
-- [x] homepaeg design ("/")
+- [x] homepaeg design ("/").
+
+*** 
+- [ ] handle errors in the login and signup ---> after deployment.
+- [ ] ssl and ssh for the express app.
+- [ ] automation of the test,stage,build and deploy.
+- [ ] monk function testing (try to get coverage).
+- [ ] task creation maybe with gulp or writing shell script.
+- [ ] lerna setup in the root dir.
+- [ ] travis ci for continuons integration.
+- [ ] local docker setup and injecting env into docker container.
+- [ ] heroku deployment.
