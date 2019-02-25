@@ -25,5 +25,5 @@
     "rootDir": "src"
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.tsx", "./src/**/*.ts", "src/test/setup.js"]
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"]
 }
