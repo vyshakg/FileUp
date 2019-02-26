@@ -13,3 +13,5 @@
   docker image ls
   docker image prune
   docker imgaes prune -a
+  docker tag `<id>` vyshakg/`<imageName>`:`<tagname>`
+  docker push vyshakg/`<imageName>`:`<tagname>`
