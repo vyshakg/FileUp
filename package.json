@@ -1,9 +1,12 @@
 {
   "private": true,
+  "scripts": {
+    "build:app": "lerna run build --scope={@fileup/server,@fileup/view}"
+  },
   "workspaces": [
     "packages/*"
   ],
-  "name": "Fileup",
+  "name": "fileup",
   "devDependencies": {
     "lerna": "^3.13.0"
   }
