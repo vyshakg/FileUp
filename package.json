@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build:app": "lerna run build --scope={@fileup/server,@fileup/view}"
+    "build:app": "lerna run build --scope={@fileup/server,@fileup/view}",
+    "start": "node build/index.js"
   },
   "workspaces": [
     "packages/*"
