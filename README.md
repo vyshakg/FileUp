@@ -31,13 +31,15 @@ A fileUp is a website where a users can upload a image and view the images.
 - [x] testing.
 - [x] homepaeg design ("/").
 
-*** 
+---
+
 - [ ] handle errors in the login and signup ---> after deployment.
 - [ ] ssl and ssh for the express app.
-- [ ] automation of the test,stage,build and deploy.
-- [ ] monk function testing (try to get coverage).
-- [ ] task creation maybe with gulp or writing shell script.
-- [ ] lerna setup in the root dir.
+- [x] automation of the test,stage,build and deploy.
+- [x] monk function testing (try to get coverage).
+- [x] task creation maybe with gulp or writing shell script.
+- [x] lerna setup in the root dir.
 - [ ] travis ci for continuons integration.
-- [ ] local docker setup and injecting env into docker container.
-- [ ] heroku deployment.
+- [x] local docker setup and injecting env into docker container.
+- [x] heroku deployment.
+- [ ] sessiom cokkie secure in productin?

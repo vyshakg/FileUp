@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:10.15.1-jessie-slim
 
 WORKDIR /fileup
 
@@ -7,7 +7,7 @@ COPY ./packages/server/package.json .
 
 RUN npm install --silent --production
 
-COPY ./dist .
+COPY ./build .
 
 ENV NODE_ENV "production"
 
