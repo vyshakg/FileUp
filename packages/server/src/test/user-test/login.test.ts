@@ -1,8 +1,8 @@
 import request from "supertest";
 import { Connection } from "typeorm";
+import { app } from "../../index";
 import { testDatabaseConnection } from "../testDatabaseConnection";
 
-const app = process.env.TEST_HOST as string;
 let conn: Connection;
 const user = {
   email: "jondoe@yahoo.com",
@@ -46,7 +46,7 @@ describe("Login POST", () => {
 
   /*
    * @author : vyshak G
-   * @Test : coorect credentials respond with 200 ok
+   * @Test : incoorect credentials respond with 200 ok
    */
 
   it("wrong password", async done => {
@@ -75,6 +75,19 @@ describe("Login POST", () => {
         expect(res.body.message).toBe("Invalid Credientials");
         expect(res.status).toBe(401);
       })
+      .end((err, res) => {
+        if (err) return done(err);
+        done();
+      });
+  });
+
+  /*
+   * @author : vyshak G
+   * @Test : Auth check
+   */ it("Auth check", async done => {
+    request(app)
+      .get("/api/isauth")
+      .expect(401)
       .end((err, res) => {
         if (err) return done(err);
         done();

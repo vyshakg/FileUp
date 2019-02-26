@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development ts-node-dev --respawn src/index.ts",
+    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn src/index.ts",
     "build": "rimraf ./build && tsc",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles  --forceExit"
+    "db:setup": "ts-node ./src/test/setup.ts",
+    "test": "cross-env NODE_ENV=test npm run db:setup && jest --detectOpenHandles  --forceExit --coverage"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

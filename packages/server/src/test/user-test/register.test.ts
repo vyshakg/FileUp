@@ -2,14 +2,14 @@ import faker from "faker";
 import request from "supertest";
 import { Connection } from "typeorm";
 import { User } from "../../entity/User";
+import { app } from "../../index";
 import { testDatabaseConnection } from "../testDatabaseConnection";
-
-const app = process.env.TEST_HOST as string;
 
 let conn: Connection;
 
-beforeAll(async () => {
+beforeAll(async done => {
   conn = await testDatabaseConnection();
+  done();
 });
 
 afterAll(async done => {
@@ -84,6 +84,7 @@ describe("Register POST", () => {
       .send(user)
       .then(res => {
         response = res.body;
+
         User.findOne({ email: response.email }).then(dbUser => {
           expect(dbUser).toBeDefined();
           expect(dbUser!.password).not.toBe(user.password);

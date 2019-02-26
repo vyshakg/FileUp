@@ -6,8 +6,8 @@ async function isAuthenticated(req: Request, res: Response, next: NextFunction) 
   const user = await User.findOne({ id: userId });
   if (user) {
     return next();
+  } else {
+    return res.status(401).json({ isLoggedIn: false, description: "Session timed Out! please login" });
   }
-
-  res.status(401).json({ isLoggedIn: false, description: "Session timed Out! please login" });
 }
 export default isAuthenticated;

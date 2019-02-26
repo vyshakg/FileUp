@@ -6,14 +6,15 @@ COPY ./packages/server/package.json .
 
 
 RUN npm install --silent --production
-RUN npm audit fix
+
 
 COPY  ./packages/server/build .
 COPY  ./packages/server/.env .
-
+COPY ./packages/view/build ./view
+COPY ./packages/view/.env.production .
 COPY ./ormconfig.json .
 
-ENV NODE_ENV production
+ENV NODE_ENV "production"
 
 EXPOSE 4000
 

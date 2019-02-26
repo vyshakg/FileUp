@@ -2,16 +2,23 @@ import connectRedis from "connect-redis";
 import session from "express-session";
 import Redis from "ioredis";
 
-export const redis = new Redis();
+export const redis = process.env.NODE_ENV === "production" ? new Redis(process.env.REDIS_URL) : new Redis();
+
 export default () => {
   const RedisStore = connectRedis(session);
 
-  const store = new RedisStore({
+  const devConfig = {
     host: process.env.REDIS_HOST,
     port: 6379,
     client: redis as any
-  });
+  };
 
+  const proConfig = {
+    client: redis as any
+  };
+  const storeConfig = process.env.NODE_ENV === "production" ? proConfig : devConfig;
+
+  const store = new RedisStore(storeConfig);
   return session({
     store,
     name: "qid",
