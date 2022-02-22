@@ -1,5 +1,6 @@
 #! /bin/bash
 
+rm -rf ./build
 yarn run build:app
 
 cp -r ./packages/server/build ./build

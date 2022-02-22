@@ -8,7 +8,7 @@ function SubmitHandle(fileList, setFileList, uploading, setUploading, history) {
     .isAuth()
     .then(async res => {
       if (res.data.isLoggedIn) {
-        await uploadFiles(fileList)
+        await uploadFiles(fileList,setUploading)
           .then(data => {
             uploadserver(data, setUploading, setFileList, history);
           })
